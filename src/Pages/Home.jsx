@@ -4,12 +4,14 @@ import Inovative from "../assets/innovative.png";
 import Services from "../assets/services.png";
 import Learning from "../assets/collaborative.png";
 import Networking from "../assets/networking.png";
+import Layout from "../Layouts/Layout";
 function Home() {
   return (
-    <div>
+    <Layout>
+         <div>
       {/* Hero section */}
       <section
-        className="flex flex-col-reverse items-center justify-center py-7 md:flex-row md:gap-7 bg-gradient-to-r from-gray-100 
+        className="flex flex-col-reverse items-center justify-center py-14 md:flex-row md:gap-6 bg-gradient-to-r from-gray-100 
             "
       >
         <div className="w-5/6 ml-4 text-center md:w-2/6 md:text-left">
@@ -30,6 +32,7 @@ function Home() {
             <button className="flex items-center text-xl px-4 py-2 text-white font-bold bg-blue-500 rounded-md hover:bg-blue-600 grou ">
               Share Your Experience
             </button>
+            
             <button className="flex items-center mt-4 px-10 py-2 text-blue-500 text-xl border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100 group">
               View Experiences
             </button>
@@ -150,6 +153,8 @@ function Home() {
         </div>
       </section>
     </div>
+    </Layout>
+    
   );
 }
 
