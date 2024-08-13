@@ -18,7 +18,7 @@ function Layout({ children }) {
           {/* <img src={Pizzalogo} className="h-13 w-12 md:h-16 md:w-16" alt="Pizza logo" /> */}
         </div>
         <div className="hidden md:block">
-          <ul className="flex gap-4">
+          <ul className="flex gap-4 mt-4 mb-4 items-center">
             <li
               className="text-xl hover:font-extrabold text-black cursor-pointer"
               // onClick={scrollToMenu}
