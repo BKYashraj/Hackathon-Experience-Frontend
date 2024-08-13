@@ -1,8 +1,31 @@
-# React + Vite
+# Hackathon Experience
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A MERN Project for sharing Hackathon Experiences within the KKWIEER College community.
 
-Currently, two official plugins are available:
+## Live Website
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Hackathon Experience]()
+
+## Server Code
+
+[GitHub Repository](https://github.com/BKYashraj/Hackathon-Experience-Frontend.git)
+
+## Tech Stack
+
+- **MongoDB**
+- **Express.js**
+- **React**
+- **Node.js**
+- **Tailwind CSS**
+- **Redux**
+- **React Router Dom**
+- **React Hot Toast**
+- **Quill Editor**
+- **React Icons**
+- **Axios**
+
+## Authors
+
+- Yashraj Desale
+- Abhijit Wagh
+
