@@ -1,10 +1,11 @@
 import './App.css'
+import Home from './Pages/Home'
 
 function App() {
 
   return (
-    <div className='text-yellow-400'>
-      Hackathon Experience
+    <div >
+      <Home />
     </div>
   )
 }
