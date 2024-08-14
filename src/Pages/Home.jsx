@@ -11,7 +11,7 @@ function Home() {
          <div>
       {/* Hero section */}
       <section
-        className="flex flex-col-reverse items-center justify-center py-14 md:flex-row md:gap-6 bg-gradient-to-r from-gray-100 
+        className="flex flex-col-reverse items-center justify-center md:py-14 md:flex-row md:gap-6 bg-gradient-to-r from-gray-100 
             "
       >
         <div className="w-5/6 ml-4 text-center md:w-2/6 md:text-left">
@@ -29,7 +29,7 @@ function Home() {
             Charge of Your Competitive Edge Today!
           </p>
           <div className="pl-10">
-            <button className="flex items-center text-xl px-4 py-2 text-white font-bold bg-blue-500 rounded-md hover:bg-blue-600 grou ">
+            <button className="flex items-center text-xl px-4 py-2 text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 grou ">
               Share Your Experience
             </button>
             
