@@ -6,7 +6,7 @@ function Layout({ children }) {
   return (
         <div>
 
-            <nav className="flex items-center justify-around h-16 text-[#6B7280] font-mono border-none shadow-md">
+            <nav className="flex items-center justify-around h-16 bg-gradient-to-r from-gray-100 to-gray-200 text-[#6B7280] font-mono border-none shadow-md">
 
             <div
           className="flex items-center justify-center cursor-pointer"
@@ -17,7 +17,7 @@ function Layout({ children }) {
           {/* <img src={Pizzalogo} className="h-13 w-12 md:h-16 md:w-16" alt="Pizza logo" /> */}
         </div>
         <div className="hidden md:block">
-          <ul className="flex gap-4 mt-4 mb-4 items-center">
+          <ul className="flex gap-4 md:gap-6 mt-4 mb-4 items-center">
             <li
               className="text-xl hover:font-extrabold text-black cursor-pointer"
               // onClick={scrollToMenu}
@@ -31,7 +31,7 @@ function Layout({ children }) {
               // onClick={scrollToServices}
             >
               {" "}
-              <p>Experiences </p>
+              <p>Hackathons</p>
             </li>
 
             <li
@@ -40,7 +40,7 @@ function Layout({ children }) {
             >
               {" "}
               {/* <p>Challenges </p> */}
-              <Link to={"/challenges"}>Challenges</Link>
+              <Link to={"/challenges"}>Research Papers</Link>
             </li>
             <li className='ml-2'>
             <button className="items-center px-7 py-1 text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 group ">
