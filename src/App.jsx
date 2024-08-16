@@ -5,6 +5,8 @@ import Hackathon from './Pages/hackathon/Hackathon'
 import Research from './Pages/Research/Research'
 import HackathonPost from './Pages/hackathon/HackathonPost'
 import ResearchPost from './Pages/Research/ResearchPost'
+import Signup from './Pages/Auth/Signup'
+import Login from './Pages/Auth/Login'
 
 function App() {
 
@@ -16,6 +18,9 @@ function App() {
        <Route path="/research" element={<Research />} />
        <Route path="/hackathonPost" element={<HackathonPost />} />
        <Route path="/researchPost" element={<ResearchPost />} />
+
+       <Route path="/auth/signup" element={<Signup/>} />
+       <Route path="/auth/login" element={<Login/>} />
      </Routes>
     </>
   )

@@ -12,7 +12,6 @@ function ResearchPost() {
     techStack: "",
     overallExperience: "",
     challenges: "",
-    highlights: "",
     winningPhoto: "",
     keyTipsForJuniors: "",
     projectDemoLink: "",

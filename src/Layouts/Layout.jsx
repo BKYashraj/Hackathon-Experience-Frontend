@@ -44,15 +44,15 @@ function Layout({ children }) {
               {/* <p>Challenges </p> */}
               <Link to={"/research"}>Research Papers</Link>
             </li>
-            <li className='ml-2'>
+            <li className='ml-2' > 
             <button className="items-center px-7 py-1 text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 group ">
-              Login
+            <Link to={"/auth/login"}>Login</Link>
             </button>
             </li>
             
             <li>
-            <button className="items-center px-7 py-1 text-blue-500 text-lg border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100 group">
-              Logout
+            <button  className="items-center px-7 py-1 text-blue-500 text-lg border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100 group ">
+            <Link to={"/auth/signup"}>Register</Link>
             </button>
             </li>
             
