@@ -1,16 +1,23 @@
-import Footer from '../Components/Footer';
-import { Link,useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Footer from "../Components/Footer";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../Redux/Slices/AuthSlice";
 // eslint-disable-next-line react/prop-types
 function Layout({ children }) {
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  async function handleLogout(e){
+    e.preventDefault();
+    dispatch(logout());
+  }
+
   return (
-        <div>
-
-            <nav className="flex items-center justify-around h-16 bg-gradient-to-r from-gray-100 to-gray-200 text-[#6B7280] font-mono border-none shadow-md">
-
-            <div
+    <div>
+      <nav className="flex items-center justify-around h-16 bg-gradient-to-r from-gray-100 to-gray-200 text-[#6B7280] font-mono border-none shadow-md">
+        <div
           className="flex items-center justify-center cursor-pointer"
-          
           onClick={() => navigate("/")}
         >
           <p className="pl-2 text-2xl text-black">HackathonResearchHub</p>
@@ -44,28 +51,37 @@ function Layout({ children }) {
               {/* <p>Challenges </p> */}
               <Link to={"/research"}>Research Papers</Link>
             </li>
-            <li className='ml-2' > 
-            <button className="items-center px-7 py-1 text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 group ">
-            <Link to={"/auth/login"}>Login</Link>
-            </button>
+            <li className="ml-2">
+              <button className="items-center px-7 py-1 text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 group ">
+                {isLoggedIn ? (
+                  <Link onClick={handleLogout}>Logout</Link>
+                ) : (
+                  <Link to={"/auth/login"}>Login</Link>
+                )}
+              </button>
             </li>
-            
+
             <li>
-            <button  className="items-center px-7 py-1 text-blue-500 text-lg border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100 group ">
-            <Link to={"/auth/signup"}>Register</Link>
-            </button>
+              {!isLoggedIn && (
+                  <button className="items-center px-7 py-1 text-blue-500 text-lg border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100 group">
+                  {!isLoggedIn && <Link to={"/auth/signup"}>Register</Link>}
+                  </button>
+              )}
             </li>
-            
+
+            <li className="hover:text-[#FF9110]">
+              
+            </li>
+
           </ul>
         </div>
+      </nav>
 
-            </nav>
+      {children}
 
-                {children}
-
-            <Footer />
-        </div>  
-    )
+      <Footer />
+    </div>
+  );
 }
 
 export default Layout;
