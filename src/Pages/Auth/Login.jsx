@@ -1,6 +1,60 @@
+import toast from "react-hot-toast";
 import login from "../../assets/Auth/login.png";
 import Layout from "../../Layouts/Layout";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { signIn } from "../../Redux/Slices/AuthSlice";
 function Login() {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [signInState, setSignInState] = useState({
+    email: "",
+    password: "",
+  });
+
+  function handleUserInput(e) {
+    const { name, value } = e.target;
+    setSignInState({ ...signInState, [name]: value });
+  }
+
+  async function handleFormSubmit(e) {
+    e.preventDefault();
+  
+    const { email, password } = signInState;
+  
+    // Custom Validation
+    if (!email || !password) {
+      toast.error("All fields are required");
+      return;
+    }
+  
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      toast.error("Invalid email address");
+      return;
+    }
+  
+    // Password validation
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character."
+      );
+      return;
+    }
+  
+    const apiResponse = await dispatch(signIn(signInState));
+    console.log(apiResponse);
+    if (apiResponse.payload.data.success) {
+      navigate("/");
+    }
+   
+  }
+
   return (
     <>
       <Layout>
@@ -24,6 +78,7 @@ function Login() {
                 <input
                   type="email"
                   id="email"
+                  onChange={handleUserInput}
                   name="email"
                   required
                   placeholder="John@example.com"
@@ -36,6 +91,7 @@ function Login() {
                 <input
                   type="password"
                   id="password"
+                  onChange={handleUserInput}
                   name="password"
                   required
                   placeholder="Enter your password"
@@ -45,6 +101,7 @@ function Login() {
 
               <button
                 type="submit"
+                onClick={handleFormSubmit}
                 className="w-full px-4 py-2 text-lg font-semibold text-white bg-yellow-500 border-0 rounded-md shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-colors duration-300"
               >
                 Create Account

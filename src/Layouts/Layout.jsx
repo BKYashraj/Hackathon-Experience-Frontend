@@ -13,7 +13,7 @@ function Layout({ children }) {
           
           onClick={() => navigate("/")}
         >
-          <p className="pl-2 text-2xl text-black">HACKATHON EXPERIENCE</p>
+          <p className="pl-2 text-2xl text-black">HackathonResearchHub</p>
           {/* <img src={Pizzalogo} className="h-13 w-12 md:h-16 md:w-16" alt="Pizza logo" /> */}
         </div>
         <div className="hidden md:block">

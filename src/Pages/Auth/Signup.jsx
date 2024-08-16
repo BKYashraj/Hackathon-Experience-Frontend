@@ -3,7 +3,14 @@ import signup from "../../assets/Auth/sign up.png";
 import Layout from "../../Layouts/Layout";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createAccount } from "../../Redux/Slices/AuthSlice";
 function Signup() {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [signUpState, setSignUpState] = useState({
     firstName: "",
     email: "",
@@ -54,7 +61,11 @@ function Signup() {
       return;
     }
   
-    toast.success("Form submitted successfully!");
+    const apiResponse = await dispatch(createAccount(signUpState));
+    console.log(apiResponse);
+    if (apiResponse.payload.data.success) {
+      navigate("/auth/login");
+    }
    
   }
    
