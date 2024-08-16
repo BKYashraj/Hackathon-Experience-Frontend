@@ -105,9 +105,12 @@ function Home() {
                 Discover the ultimate guide to hackathon success. Gain exclusive
                 insights, strategies, and tips to dominate your next hackathon.
               </p>
+              <Link to="/hackathonPost">
               <button className="flex items-center text-xl px-4 py-2 text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 mb-4">
                 Share Your Experience
               </button>
+              </Link>
+              
               <button className="flex items-center text-xl px-4 py-2 text-blue-500 border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100">
                 View Experiences
               </button>
@@ -128,9 +131,12 @@ function Home() {
                 academic community. Contribute to innovation and academic
                 excellence.
               </p>
+              <Link to={'/researchPost'}>
               <button className="flex items-center text-xl px-4 py-2 text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 mb-4">
                 Share Your Research
               </button>
+              </Link>
+              
               <button className="flex items-center text-xl px-4 py-2 text-blue-500 border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100">
                 View Research
               </button>

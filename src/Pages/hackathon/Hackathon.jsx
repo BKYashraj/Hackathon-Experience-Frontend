@@ -1,54 +1,58 @@
-import Layout from "../Layouts/Layout";
-import IconPatchCheck from "../Components/Icons/IconPatchCheck";
-import Inovative from "../assets/innovative.png";
-import Services from "../assets/research/service.png";
-import Learning from "../assets/collaborative.png";
-import Networking from "../assets/networking.png";
-function Research() {
+import Layout from "../../Layouts/Layout";
+import IconPatchCheck from "../../Components/Icons/IconPatchCheck";
+import Inovative from "../../assets/innovative.png";
+import Services from "../../assets/Hackathon/service.png";
+import Learning from "../../assets/collaborative.png";
+import Networking from "../../assets/networking.png";
+import { Link } from "react-router-dom";
+function Hackathon() {
   return (
     <Layout>
       <div>
         {/* Hero section */}
         <section
           className="flex flex-col-reverse items-center justify-center md:py-14 md:flex-row md:gap-6 bg-white-50
-          "
+            "
         >
           <div className="w-5/6 text-center justify-center md:w-3/6 ">
             <div className="flex justify-center text-5xl md:justify-normal">
               <h1 className="pb-5 pt-4 font-bold bg-gradient-to-r from-black-500 to-black-400 bg-clip-text">
-                A Powerful Unlock Your Research Potential{" "}
+                A Powerful Resource to Master Hackathons{" "}
               </h1>
             </div>
 
             <p className="pb-5 text-lg text-[#202020]">
-              Explore the Comprehensive Guide to Research Paper Excellence. Gain
-              Exclusive Insights, Proven Strategies, and Expert Tips to Elevate
-              Your Research Paper. Make Informed Decisions, Enhance Your Writing
-              Skills, and Propel Your Academic Journey Forward. Start Uploading
-              and Sharing Your Research Achievements Today!
+              Discover the Ultimate Guide to Hackathon Success. Gain Exclusive
+              Insights, Proven Strategies, and Expert Tips to Dominate Your Next
+              Hackathon. Share Your Experiences, Boost Your Skills, and Take
+              Charge of Your Competitive Edge Today!
             </p>
-            <div className="flex gap-6 p-6 flex-row justify-center items-center">
-              <button className="flex items-center text-xl px-4 py-2 text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600">
-                Share Your Research
+            <div className="flex gap-6  p-6 flex-row justify-center items-center">
+                  
+                  
+            <Link to="/hackathonPost">
+            <button className="flex items-center text-xl px-4 py-2 text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600">
+                Share Your Experience
               </button>
+            </Link>
+              
 
               <button className="flex items-center px-10 py-2 text-blue-500 text-xl border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100">
-                View Research
+                View Experiences
               </button>
             </div>
           </div>
 
           {/* <div>
-        <img
-          src={HeroImage}
-          alt="Hackathon"
-          width={550}
-          height={550}
-          className=" opacity-100 md:opacity-100"
-        />
-      </div> */}
+          <img
+            src={HeroImage}
+            alt="Hackathon"
+            width={550}
+            height={550}
+            className=" opacity-100 md:opacity-100"
+          />
+        </div> */}
         </section>
-
         {/* Services section */}
         <section className="py-4 mt-6 ">
           <div className="container flex flex-col md:flex-row">
@@ -64,10 +68,11 @@ function Research() {
               <div className="flex flex-col items-center lg:items-start">
                 <div>
                   <h2 className="mb-2 text-5xl font-extrabold title-font text-black p-3">
-                  Gear Up for Your Next Research Paper
+                    Gear Up for Your Next Hackathon
                   </h2>
                   <p className=" leading-relaxed text-lg text-black">
-                  With Research Paper Insights, Get Ready to Share Your Findings and Showcase Your Achievements!
+                    With Hackathon Insights, Get Ready to Conquer Challenges and
+                    Showcase Your Skills!
                   </p>
                 </div>
               </div>
@@ -156,4 +161,4 @@ function Research() {
   );
 }
 
-export default Research;
+export default Hackathon;
