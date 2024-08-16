@@ -17,10 +17,11 @@ function Layout({ children }) {
           {/* <img src={Pizzalogo} className="h-13 w-12 md:h-16 md:w-16" alt="Pizza logo" /> */}
         </div>
         <div className="hidden md:block">
-          <ul className="flex gap-4 md:gap-6 mt-4 mb-4 items-center">
+          <ul className="flex gap-4 md:gap-10 mt-4 mb-4 items-center">
             <li
               className="text-xl hover:font-extrabold text-black cursor-pointer"
               // onClick={scrollToMenu}
+              onClick={() => navigate("/")}
             >
               {" "}
               <p>Home </p>
@@ -29,6 +30,7 @@ function Layout({ children }) {
             <li
               className="text-xl hover:font-extrabold text-black cursor-pointer"
               // onClick={scrollToServices}
+              onClick={() => navigate("/hackathon")}
             >
               {" "}
               <p>Hackathons</p>
@@ -40,7 +42,7 @@ function Layout({ children }) {
             >
               {" "}
               {/* <p>Challenges </p> */}
-              <Link to={"/challenges"}>Research Papers</Link>
+              <Link to={"/research"}>Research Papers</Link>
             </li>
             <li className='ml-2'>
             <button className="items-center px-7 py-1 text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 group ">
