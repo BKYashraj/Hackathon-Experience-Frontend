@@ -1,7 +1,14 @@
 import { useState } from "react";
 import Layout from "../../Layouts/Layout";
+import { addPost } from "../../Redux/Slices/HackathonSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function HackathonPost() {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     hackathonName: "",
     title: "",
@@ -26,16 +33,42 @@ function HackathonPost() {
       setFormData({ ...formData, [name]: value });
     }
   };
+  
+  const [winningPhoto, setWinningPhoto] = useState(null);
 
-  const handleSubmit = (e) => {
+   async function handleSubmit(e) {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
-  };
+
+    // Create a new FormData object
+    const form = new FormData();
+    
+    // Append each field to FormData
+    for (const [key, value] of Object.entries(formData)) {
+      form.append(key, value);
+    }
+
+    // Append file to FormData if it exists
+    if (winningPhoto) {
+      form.append("winningPhoto", winningPhoto);
+    }
+
+    // Dispatch the action with the form data
+    try {
+      const apiResponse = await dispatch(addPost(form));
+      console.log(apiResponse);
+
+      if (apiResponse.payload.data.success) {
+        navigate("/hackPage");
+      }
+    } catch (error) {
+      console.error("Error adding hackathon experience:", error);
+    }
+  }
+
 
   return (
     <Layout>
-      <div className="max-w-4xl bg-gray-100 rounded-lg shadow-lg mx-auto my-12 p-8">
+      <div className="max-w-7xl bg-gray-100 rounded-lg shadow-lg mx-auto my-12 p-8">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-extrabold text-gray-800">Share Your Hackathon Journey</h2>
         </div>
@@ -202,6 +235,7 @@ function HackathonPost() {
           <div className="text-center mt-8">
             <button
               type="submit"
+              onClick={handleSubmit}
               className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition duration-200"
             >
               Post
