@@ -9,7 +9,21 @@ import Services from "../assets/serviceHome.png";
 import Learning from "../assets/collaborative.png";
 import Networking from "../assets/networking.png";
 import paper from "../assets/paper2.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAllPosts } from "../Redux/Slices/HackathonSlice";
 function Home() {
+  const dispatch = useDispatch();
+
+  // const { hackathonsData } = useSelector((state)=>state.hackathons)
+  const hackathonsData = useSelector(
+    (state) => state.hackathons.hackathonsData
+  );
+
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, []);
+
   return (
     <Layout>
       <div>
@@ -88,8 +102,84 @@ function Home() {
       </div>
     </section> */}
 
+        {/* {hackathonsData.map((product) => <div key={product._id}>{product.hackathonName}</div>)} */}
+        <section className="bg-gray-100">
+          <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0 bg-gray-100 py-8">
+            <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-6 relative">
+              Highlighting Top Hackathon Achievements
+            </h2>
+            <p className="text-center text-lg text-gray-700 mb-8">
+              Showcase your hackathon success and inspire others by sharing your
+              achievements. Join our community and let your experience shine as
+              a top highlight. Your story could be the next to inspire!
+            </p>
+            {hackathonsData.length > 0 ? (
+              <div className="space-y-8">
+                {hackathonsData.map((hackathon) => (
+                  <div
+                    key={hackathon._id}
+                    className="flex flex-col md:flex-row bg-white p-8 rounded-lg shadow-lg border border-gray-200 relative"
+                  >
+                    <div className="absolute top-0 left-0 bg-blue-100 text-black text-sm font-bold px-4 py-2 rounded-br-lg">
+                      Hackathon Experience
+                    </div>
+
+                    <div className="flex-none w-full md:w-1/3 mb-6 md:mb-0">
+                      <img
+                        className="w-full h-64 object-cover rounded-md"
+                        src={hackathon.winningPhoto || "default-image-url.jpg"}
+                        alt={hackathon.hackathonName}
+                      />
+                    </div>
+                    <div className="flex flex-col w-full md:w-2/3 md:pl-8">
+                      <h3 className="text-xl font-bold text-gray-900 mb-4 hover:underline hover:decoration-2">
+                        {hackathon.hackathonName} Hackathon Experience
+                      </h3>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        <strong>Title:</strong> {hackathon.title}
+                      </p>
+                      {/* <p className="text-lg font-medium text-gray-800 mb-2">
+                        <strong>Theme/Domain:</strong> {hackathon.themeOrDomain}
+                      </p>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        <strong>Category:</strong> {hackathon.category}
+                      </p> */}
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        <strong>Experience:</strong> {hackathon.overallExperience}
+                      </p>
+                      <p className="text-lg font-medium text-gray-800 mb-2">
+                        <strong>Mentor Name:</strong> {hackathon.mentorName}
+                      </p>
+                      <p className="text-lg font-medium text-gray-800 mb-4">
+                        <strong>Team Members:</strong>{" "}
+                        {hackathon.teamMembersNames}
+                      </p>
+                      {hackathon.projectDemoLink && (
+                        <p>
+                          <a
+                            href={hackathon.projectDemoLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:underline text-lg"
+                          >
+                            View Project Demo
+                          </a>
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-center text-gray-500">
+                No hackathon details available.
+              </p>
+            )}
+          </div>
+        </section>
+
         {/* Services Section */}
-        <section className="pb-12">
+        <section className="pb-12 pt-16">
           <div className="container mx-auto flex flex-col md:flex-row gap-8">
             {/* Hackathon Experience Section */}
             <div className="flex flex-col items-center justify-center w-full md:w-1/2 p-6 bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg shadow-lg">
@@ -106,11 +196,11 @@ function Home() {
                 insights, strategies, and tips to dominate your next hackathon.
               </p>
               <Link to="/hackathonPost">
-              <button className="flex items-center text-xl px-4 py-2 text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 mb-4">
-                Share Your Experience
-              </button>
+                <button className="flex items-center text-xl px-4 py-2 text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 mb-4">
+                  Share Your Experience
+                </button>
               </Link>
-              
+
               <button className="flex items-center text-xl px-4 py-2 text-blue-500 border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100">
                 View Experiences
               </button>
@@ -131,12 +221,12 @@ function Home() {
                 academic community. Contribute to innovation and academic
                 excellence.
               </p>
-              <Link to={'/researchPost'}>
-              <button className="flex items-center text-xl px-4 py-2 text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 mb-4">
-                Share Your Research
-              </button>
+              <Link to={"/researchPost"}>
+                <button className="flex items-center text-xl px-4 py-2 text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 mb-4">
+                  Share Your Research
+                </button>
               </Link>
-              
+
               <button className="flex items-center text-xl px-4 py-2 text-blue-500 border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100">
                 View Research
               </button>
