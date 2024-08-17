@@ -115,58 +115,65 @@ function Home() {
             </p>
             {hackathonsData.length > 0 ? (
               <div className="space-y-8">
-                {hackathonsData.map((hackathon) => (
+                {hackathonsData.slice(-3).reverse().map((hackathon) => (
                   <div
                     key={hackathon._id}
-                    className="flex flex-col md:flex-row bg-white p-8 rounded-lg shadow-lg border border-gray-200 relative"
+                    className="flex flex-col md:flex-row items-center bg-white p-8 rounded-lg shadow-lg border border-gray-200 relative"
                   >
                     <div className="absolute top-0 left-0 bg-blue-100 text-black text-sm font-bold px-4 py-2 rounded-br-lg">
                       Hackathon Experience
                     </div>
-
-                    <div className="flex-none w-full md:w-1/3 mb-6 md:mb-0">
-                      <img
-                        className="w-full h-64 object-cover rounded-md"
-                        src={hackathon.winningPhoto || "default-image-url.jpg"}
-                        alt={hackathon.hackathonName}
-                      />
-                    </div>
-                    <div className="flex flex-col w-full md:w-2/3 md:pl-8">
-                      <h3 className="text-xl font-bold text-gray-900 mb-4 hover:underline hover:decoration-2">
-                        {hackathon.hackathonName} Hackathon Experience
-                      </h3>
-                      <p className="text-lg font-medium text-gray-800 mb-2">
-                        <strong>Title:</strong> {hackathon.title}
-                      </p>
-                      {/* <p className="text-lg font-medium text-gray-800 mb-2">
-                        <strong>Theme/Domain:</strong> {hackathon.themeOrDomain}
-                      </p>
-                      <p className="text-lg font-medium text-gray-800 mb-2">
-                        <strong>Category:</strong> {hackathon.category}
-                      </p> */}
-                      <p className="text-lg font-medium text-gray-800 mb-2">
-                        <strong>Experience:</strong> {hackathon.overallExperience}
-                      </p>
-                      <p className="text-lg font-medium text-gray-800 mb-2">
-                        <strong>Mentor Name:</strong> {hackathon.mentorName}
-                      </p>
-                      <p className="text-lg font-medium text-gray-800 mb-4">
-                        <strong>Team Members:</strong>{" "}
-                        {hackathon.teamMembersNames}
-                      </p>
-                      {hackathon.projectDemoLink && (
-                        <p>
-                          <a
-                            href={hackathon.projectDemoLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline text-lg"
-                          >
-                            View Project Demo
-                          </a>
+                    <Link
+                      to={`/hackPage/${hackathon._id}`}
+                      className="block md:flex bg-white"
+                    >
+                      <div className="flex flex-none items-center w-full md:w-1/3">
+                        <img
+                          className="w-full h-64 object-cover rounded-t-lg md:rounded-none md:rounded-l-lg"
+                          src={
+                            hackathon.winningPhoto || "default-image-url.jpg"
+                          }
+                          alt={hackathon.hackathonName}
+                        />
+                      </div>
+                      <div className="flex flex-col w-full md:w-2/3 md:pl-6 sm:pt-4">
+                        <h3 className="text-xl font-bold text-gray-900 mb-4 hover:underline hover:decoration-2">
+                          {hackathon.hackathonName} Experience
+                        </h3>
+                        <p className="text-lg font-medium text-gray-800 mb-2">
+                          <strong>Title:</strong> {hackathon.title}
                         </p>
-                      )}
-                    </div>
+                        {/* <p className="text-lg font-medium text-gray-800 mb-2">
+                  <strong>Theme/Domain:</strong> {hackathon.themeOrDomain}
+                </p>
+                <p className="text-lg font-medium text-gray-800 mb-2">
+                  <strong>Category:</strong> {hackathon.category}
+                </p> */}
+                        <p className="text-lg font-medium text-gray-800 mb-2">
+                          <strong>Experience:</strong>{" "}
+                          {hackathon.overallExperience}
+                        </p>
+                        <p className="text-lg font-medium text-gray-800 mb-2">
+                          <strong>Mentor Name:</strong> {hackathon.mentorName}
+                        </p>
+                        <p className="text-lg font-medium text-gray-800 mb-4">
+                          <strong>Team Members:</strong>{" "}
+                          {hackathon.teamMembersNames}
+                        </p>
+                        {hackathon.projectDemoLink && (
+                          <p>
+                            <a
+                              href={hackathon.projectDemoLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:underline text-lg"
+                            >
+                              View Project Demo
+                            </a>
+                          </p>
+                        )}
+                      </div>
+                    </Link>
                   </div>
                 ))}
               </div>
@@ -201,9 +208,11 @@ function Home() {
                 </button>
               </Link>
 
-              <button className="flex items-center text-xl px-4 py-2 text-blue-500 border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100">
-                View Experiences
-              </button>
+              <Link to="/hackPage">
+                <button className="flex items-center text-xl px-4 py-2 text-blue-500 border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100">
+                  View Experiences
+                </button>
+              </Link>
             </div>
 
             {/* Research Paper Section */}
