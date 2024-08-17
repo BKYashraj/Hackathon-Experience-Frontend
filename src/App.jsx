@@ -10,6 +10,7 @@ import Login from './Pages/Auth/Login'
 import NotFound from './Pages/NotFound'
 import ViewPageHack from './Pages/hackathon/ViewPageHack'
 import HackInside from './Pages/hackathon/HackInside'
+import RequireAuth from './Components/Auth/RequireAuth'
 
 function App() {
 
@@ -19,13 +20,19 @@ function App() {
        <Route path="/" element={<Home />} />
        <Route path="/hackathon" element={<Hackathon />} />
        <Route path="/research" element={<Research />} />
-       <Route path="/hackathonPost" element={<HackathonPost />} />
-       <Route path="/researchPost" element={<ResearchPost />} />
+       
        <Route path="/hackPage" element={<ViewPageHack />} />
-       <Route path="/hackPage/:hackId" element={<HackInside />} />
+       
 
        <Route path="/auth/signup" element={<Signup/>} />
        <Route path="/auth/login" element={<Login/>} />
+
+
+       <Route element={<RequireAuth />}>
+          <Route path="/hackPage/:hackId" element={<HackInside />} />
+          <Route path="/hackathonPost" element={<HackathonPost />} />
+        <Route path="/researchPost" element={<ResearchPost />} />  
+       </Route>
 
        <Route path="*" element={<NotFound/>} />
      </Routes>
