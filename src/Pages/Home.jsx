@@ -235,10 +235,11 @@ function Home() {
                   Share Your Research
                 </button>
               </Link>
-
+              <Link to={"/researchPage"}>
               <button className="flex items-center text-xl px-4 py-2 text-blue-500 border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100">
                 View Research
               </button>
+              </Link>
             </div>
           </div>
         </section>

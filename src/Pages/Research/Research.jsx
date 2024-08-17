@@ -29,15 +29,16 @@ function Research() {
               and Sharing Your Research Achievements Today!
             </p>
             <div className="flex gap-6 p-6 flex-row justify-center items-center">
-            
-            <Link to={'/researchPost'}>
-            <button className="flex items-center text-xl px-4 py-2 text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600">
-                Share Your Research
-              </button>
-            </Link>
-              <button className="flex items-center px-10 py-2 text-blue-500 text-xl border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100">
-                View Research
-              </button>
+              <Link to={"/researchPost"}>
+                <button className="flex items-center text-xl px-4 py-2 text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600">
+                  Share Your Research
+                </button>
+              </Link>
+              <Link to={"/researchPage"}>
+                <button className="flex items-center px-10 py-2 text-blue-500 text-xl border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100">
+                  View Research
+                </button>
+              </Link>
             </div>
           </div>
 
@@ -67,10 +68,11 @@ function Research() {
               <div className="flex flex-col items-center lg:items-start">
                 <div>
                   <h2 className="mb-2 text-5xl font-extrabold title-font text-black p-3">
-                  Gear Up for Your Next Research Paper
+                    Gear Up for Your Next Research Paper
                   </h2>
                   <p className=" leading-relaxed text-lg text-black">
-                  With Research Paper Insights, Get Ready to Share Your Findings and Showcase Your Achievements!
+                    With Research Paper Insights, Get Ready to Share Your
+                    Findings and Showcase Your Achievements!
                   </p>
                 </div>
               </div>

@@ -11,6 +11,7 @@ import NotFound from './Pages/NotFound'
 import ViewPageHack from './Pages/hackathon/ViewPageHack'
 import HackInside from './Pages/hackathon/HackInside'
 import RequireAuth from './Components/Auth/RequireAuth'
+import ViewResearchPage from './Pages/Research/ViewResearchPage'
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
        <Route path="/research" element={<Research />} />
        
        <Route path="/hackPage" element={<ViewPageHack />} />
-       
+       <Route path="/researchPage" element={<ViewResearchPage />} />
 
        <Route path="/auth/signup" element={<Signup/>} />
        <Route path="/auth/login" element={<Login/>} />
