@@ -5,15 +5,15 @@ import axiosInstance from "../../Helper/axiosInstance";
 const initialState = {
   isLoggedIn: localStorage.getItem("isLoggedIn") === "true" || false,
   role: localStorage.getItem("role") || "",
-  data: JSON.parse(localStorage.getItem("data")) || {},
-  // data: (() => {
-  //   const data = localStorage.getItem("data");
-  //   try {
-  //     return JSON.parse(data) || {};
-  //   } catch {
-  //     return {};
-  //   }
-  // })(),
+  // data: JSON.parse(localStorage.getItem("data")) || {},
+  data: (() => {
+    const data = localStorage.getItem("data");
+    try {
+      return JSON.parse(data) || {};
+    } catch {
+      return {};
+    }
+  })(),
 };
 
 export const createAccount = createAsyncThunk(
@@ -81,6 +81,7 @@ const AuthSlice = createSlice({
       .addCase(signIn.fulfilled, (state, action) => {
         // reducer which will execute when the login thunk is fulfilled
         console.log("Action Payload:", action.payload);  // This will contain the response from the server.
+
 
         state.isLoggedIn = true;
         state.role = action?.payload?.data?.data?.userRole;
