@@ -3,11 +3,10 @@ import signup from "../../assets/Auth/sign up.png";
 import Layout from "../../Layouts/Layout";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createAccount } from "../../Redux/Slices/AuthSlice";
 function Signup() {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -25,50 +24,49 @@ function Signup() {
 
   async function handleFormSubmit(e) {
     e.preventDefault();
-  
+
     const { firstName, email, mobileNumber, password } = signUpState;
-  
+
     // Custom Validation
     if (!firstName || !email || !mobileNumber || !password) {
       toast.error("All fields are required");
       return;
     }
-  
+
     if (firstName.length < 5 || firstName.length > 20) {
       toast.error("First name should be between 5 and 20 characters long");
       return;
     }
-  
+
     // Email validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       toast.error("Invalid email address");
       return;
     }
-  
+
     // Mobile number validation
     if (mobileNumber.length < 10 || mobileNumber.length > 12) {
       toast.error("Mobile number should be between 10-12 digits");
       return;
     }
-  
+
     // Password validation
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordRegex.test(password)) {
       toast.error(
         "Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character."
       );
       return;
     }
-  
+
     const apiResponse = await dispatch(createAccount(signUpState));
     console.log(apiResponse);
     if (apiResponse.payload.data.success) {
       navigate("/auth/login");
     }
-   
   }
-   
 
   return (
     <>
@@ -176,12 +174,12 @@ function Signup() {
 
               <p className="mt-4 text-sm text-gray-600">
                 Already have an account?{" "}
-                <a
-                  href="/auth/login"
+                <Link
+                  to="/auth/login"
                   className="text-yellow-500 hover:underline"
                 >
                   Login
-                </a>
+                </Link>
               </p>
             </form>
           </div>

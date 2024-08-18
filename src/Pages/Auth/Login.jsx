@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import login from "../../assets/Auth/login.png";
 import Layout from "../../Layouts/Layout";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { signIn } from "../../Redux/Slices/AuthSlice";
@@ -107,7 +107,16 @@ function Login() {
                 Create Account
               </button>
 
-              <p className="mt-4 text-sm text-gray-600">Do not have an account ? <a href="/auth/signup" className="text-yellow-500 hover:underline">Register</a></p>
+              <p className="mt-4 text-sm text-gray-600">
+              Do not have an account ? {" "}
+                <Link
+                  to="/auth/signup"
+                  className="text-yellow-500 hover:underline"
+                >
+                  Register
+                </Link>
+              </p>
+
             </form>
           </div>
         </section>
