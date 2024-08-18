@@ -21,8 +21,23 @@ function Home() {
   );
 
   useEffect(() => {
-    dispatch(getAllPosts());
-  }, []);
+    const fetchPosts = async () => {
+      try {
+        await dispatch(getAllPosts());
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+  
+    fetchPosts();
+  
+    // Set up an interval to periodically fetch posts
+    const intervalId = setInterval(fetchPosts, 5 * 60 * 1000); // every 5 minutes
+  
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, [dispatch]);
+  
 
   return (
     <Layout>
