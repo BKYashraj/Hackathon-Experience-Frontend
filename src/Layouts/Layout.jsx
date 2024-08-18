@@ -8,7 +8,7 @@ function Layout({ children }) {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  async function handleLogout(e){
+  async function handleLogout(e) {
     e.preventDefault();
     dispatch(logout());
   }
@@ -20,7 +20,9 @@ function Layout({ children }) {
           className="flex items-center justify-center cursor-pointer"
           onClick={() => navigate("/")}
         >
-          <p className="pl-2 text-2xl text-black">HackathonResearchHub</p>
+          <p className="md:pl-2 md:text-2xl text-xl text-black">
+            HackathonResearchHub
+          </p>
           {/* <img src={Pizzalogo} className="h-13 w-12 md:h-16 md:w-16" alt="Pizza logo" /> */}
         </div>
         <div className="hidden md:block">
@@ -51,8 +53,14 @@ function Layout({ children }) {
               {/* <p>Challenges </p> */}
               <Link to={"/research"}>Research Papers</Link>
             </li>
-            <li className="ml-2">
-              <button className="items-center px-7 py-1 text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 group ">
+          </ul>
+        </div>
+
+        <div >
+          <ul>
+            <div className="ml-2 flex flex-row gap-3 md:gap-8 items-center justify-center cursor-pointer">
+            <li >
+              <button className="items-center px-2 md:px-7 py-1 text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 group ">
                 {isLoggedIn ? (
                   <Link onClick={handleLogout}>Logout</Link>
                 ) : (
@@ -63,16 +71,15 @@ function Layout({ children }) {
 
             <li>
               {!isLoggedIn && (
-                  <button className="items-center px-7 py-1 text-blue-500 text-lg border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100 group">
+                <button className="items-center px-2 md:px-7 py-1 text-blue-500 text-lg border border-blue-500 font-bold bg-white rounded-md hover:bg-gray-100 group">
                   {!isLoggedIn && <Link to={"/auth/signup"}>Register</Link>}
-                  </button>
+                </button>
               )}
             </li>
+            </div>
+          
 
-            <li className="hover:text-[#FF9110]">
-              
-            </li>
-
+            
           </ul>
         </div>
       </nav>
