@@ -80,6 +80,8 @@ const AuthSlice = createSlice({
     builder
       .addCase(signIn.fulfilled, (state, action) => {
         // reducer which will execute when the login thunk is fulfilled
+        console.log("Action Payload:", action.payload);  // This will contain the response from the server.
+
         state.isLoggedIn = true;
         state.role = action?.payload?.data?.data?.userRole;
         state.data = action?.payload?.data?.data?.userData;
