@@ -88,7 +88,7 @@ function Layout({ children }) {
         alt="User Profile"
         className="w-12 h-12 rounded-full border-4 border-gray-200 object-cover shadow-lg"
       />
-      <h1 className="text-xl font-bold text-black">{user.firstName}</h1>
+      <h1 className="hidden md:block text-xl font-bold text-black">{user.firstName}</h1>
 
       {dropdownOpen && (
         <div
