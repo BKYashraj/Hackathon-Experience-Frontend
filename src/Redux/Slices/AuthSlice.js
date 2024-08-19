@@ -104,14 +104,14 @@ const AuthSlice = createSlice({
         console.log("Action Payload:", action.payload); // This will contain the response from the server.
 
         state.isLoggedIn = true;
-        state.role = action?.payload?.data?.data?.userRole;
-        state.data = action?.payload?.data?.data?.userData;
-
+        state.role = action?.payload?.data?.userRole;
+        state.email = action?.payload?.data?.userData?.email;
+        state.name = action?.payload?.data?.userData?.firstName;
         localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem("role", action?.payload?.data?.data?.userRole);
+        localStorage.setItem("role", action?.payload?.data?.userRole);
         localStorage.setItem(
           "data",
-          JSON.stringify(action?.payload?.data?.data?.userData)
+          JSON.stringify(action?.payload?.data?.userData)
         );
       })
       .addCase(GoogleSignIn.fulfilled, (state, action) => {

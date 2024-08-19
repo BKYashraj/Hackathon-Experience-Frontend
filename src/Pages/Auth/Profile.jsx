@@ -4,7 +4,7 @@ import Layout from "../../Layouts/Layout";
 
 const UserProfile = () => {
   // Demo user data
-  const user = useSelector((state) => state.auth.data);
+  const user = useSelector((state) => state.auth);
 
   const hackathons = [
     { id: 1, title: 'Hackathon X', theme: 'AI & Robotics' },
@@ -34,17 +34,17 @@ const UserProfile = () => {
         <div className="bg-white p-8 rounded-lg shadow-md mb-8 max-w-3xl mx-auto">
           <div className="flex items-center space-x-8">
             <img
-              src={profile}
+              src={user.photoURL || profile}
               alt="User Profile"
               className="w-24 h-24 rounded-full border-4 border-gray-200 object-cover shadow-lg"
             />
             <div className="flex-1 text-left ">
-              <h1 className="text-4xl font-extrabold text-gray-800">{user.firstName}</h1>
+              <h1 className="text-4xl font-extrabold text-gray-800">{user.name || user.data.firstName}</h1>
               <p className="text-gray-600 mt-2">
-                <span className="text-xl font-bold text-black">Email: </span><span className="text-xl text-black font-medium">{user.email}</span> 
+                <span className="text-xl font-bold text-black">Email: </span><span className="text-xl text-black font-medium">{user.email || user.data.email}</span> 
               </p>
               <p className="text-gray-600 mt-1">
-                <span className="text-xl font-bold text-black">Mobile:</span> <span className="text-xl text-black font-medium">{user.mobileNumber}</span>
+                <span className="text-xl font-bold text-black">Role:</span> <span className="text-xl text-black font-medium">{user.role}</span>
               </p>
             </div>
           </div>

@@ -8,7 +8,7 @@ import { FaUser, FaSignOutAlt } from "react-icons/fa";
 
 // eslint-disable-next-line react/prop-types
 function Layout({ children }) {
-  const user = useSelector((state) => state.auth.data);
+  const user = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -81,16 +81,14 @@ function Layout({ children }) {
               </li>
 
               <li>
-  {!isLoggedIn && (
-    <Link to="/auth/signup">
-      <button
-        className="w-full px-2 md:px-7 py-1 text-sm md:text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-colors duration-300"
-      >
-        Register
-      </button>
-    </Link>
-  )}
-</li>
+                {!isLoggedIn && (
+                  <Link to="/auth/signup">
+                    <button className="w-full px-2 md:px-7 py-1 text-sm md:text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-colors duration-300">
+                      Register
+                    </button>
+                  </Link>
+                )}
+              </li>
 
               <li className="relative">
                 {isLoggedIn && (
@@ -99,7 +97,7 @@ function Layout({ children }) {
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                   >
                     <img
-                      src={profile}
+                      src={user.photoURL ? user.photoURL : profile}
                       alt="User Profile"
                       className="w-12 h-12 rounded-full border-4 border-gray-200 object-cover shadow-lg"
                     />
