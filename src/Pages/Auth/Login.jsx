@@ -5,8 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { signIn } from "../../Redux/Slices/AuthSlice";
+import OAuth from "../../Components/OAuth";
 function Login() {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -22,37 +22,37 @@ function Login() {
 
   async function handleFormSubmit(e) {
     e.preventDefault();
-  
+
     const { email, password } = signInState;
-  
+
     // Custom Validation
     if (!email || !password) {
       toast.error("All fields are required");
       return;
     }
-  
+
     // Email validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       toast.error("Invalid email address");
       return;
     }
-  
+
     // Password validation
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordRegex.test(password)) {
       toast.error(
         "Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character."
       );
       return;
     }
-  
+
     const apiResponse = await dispatch(signIn(signInState));
     console.log(apiResponse);
     if (apiResponse.payload.data.success) {
       navigate("/");
     }
-   
   }
 
   return (
@@ -74,7 +74,12 @@ function Login() {
               <h2 className="mb-6 text-2xl font-bold text-gray-800">Login</h2>
 
               <div className="relative mb-5">
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-700">Email <span className="text-red-500">*</span></label>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-semibold text-gray-700"
+                >
+                  Email <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="email"
                   id="email"
@@ -87,7 +92,12 @@ function Login() {
               </div>
 
               <div className="relative mb-5">
-                <label htmlFor="password" className="block text-sm font-semibold text-gray-700">Password <span className="text-red-500">*</span></label>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-semibold text-gray-700"
+                >
+                  Password <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="password"
                   id="password"
@@ -102,21 +112,20 @@ function Login() {
               <button
                 type="submit"
                 onClick={handleFormSubmit}
-                className="w-full px-4 py-2 text-lg font-semibold text-white bg-yellow-500 border-0 rounded-md shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-colors duration-300"
+                className="w-full px-4 py-2 mb-6  text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600  border-0 rounded-md shadow-md focus:outline-none focus:ring-2 transition-colors duration-300"
               >
                 Create Account
               </button>
-
-              <p className="mt-4 text-sm text-gray-600">
-              Do not have an account ? {" "}
+              <OAuth />
+              <p className="mt-3">Don't have an account? {" "}
                 <Link
                   to="/auth/signup"
-                  className="text-yellow-500 hover:underline"
+                  className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
-                  Register
+                  Sign up
                 </Link>
               </p>
-
+              
             </form>
           </div>
         </section>
@@ -125,4 +134,4 @@ function Login() {
   );
 }
 
-export default Login
+export default Login;

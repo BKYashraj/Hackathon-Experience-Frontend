@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createAccount } from "../../Redux/Slices/AuthSlice";
+import OAuth from "../../Components/OAuth";
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -167,20 +168,21 @@ function Signup() {
               <button
                 type="submit"
                 onChange={handleFormSubmit}
-                className="w-full px-4 py-2 text-lg font-semibold text-white bg-yellow-500 border-0 rounded-md shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-colors duration-300"
+                className="w-full px-4 py-2 mb-6  text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600  border-0 rounded-md shadow-md focus:outline-none focus:ring-2 transition-colors duration-300"
               >
                 Create Account
               </button>
-
-              <p className="mt-4 text-sm text-gray-600">
-                Already have an account?{" "}
-                <Link
+              <OAuth/>
+              
+              <p className="mt-3">Already have an account?{" "}
+              <Link
                   to="/auth/login"
-                  className="text-yellow-500 hover:underline"
+                  className="text-indigo-600 hover:underline"
                 >
                   Login
                 </Link>
               </p>
+              
             </form>
           </div>
         </section>
