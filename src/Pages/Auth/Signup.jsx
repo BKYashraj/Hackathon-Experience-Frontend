@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createAccount } from "../../Redux/Slices/AuthSlice";
-import OAuth from "../../Components/OAuth";
+import OAuth from "../../Components/Auth/OAuth";
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();

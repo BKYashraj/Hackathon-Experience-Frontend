@@ -1,14 +1,45 @@
-
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { app } from '../../firebase';
+import { GoogleSignIn } from "../../Redux/Slices/AuthSlice";
 const OAuth = () => {
   // Placeholder function for handling button click
-  const handleClick = () => {
-    console.log('Continue with Google clicked');
-    // Here you would add logic to handle Google Sign-In
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleGoogleClick = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth(app); // Assuming `app` is already initialized in your Firebase setup
+
+      const result = await signInWithPopup(auth, provider);
+      console.log(result);
+
+      const userData = {
+        name: result.user.displayName,
+        email: result.user.email,
+        photo: result.user.photoURL,
+      };
+
+      // Dispatch the GoogleSignIn thunk with the user data
+      const response = await dispatch(GoogleSignIn(userData)).unwrap();
+
+      // You can navigate or perform any action based on the response
+      if (response) {
+        console.log('Google sign-in successful:', response);
+        navigate('/');
+      }
+    } catch (error) {
+      console.log('Could not sign in with Google', error);
+    }
   };
+
 
   return (
     <button
-      onClick={handleClick}
+      type="button" //If you don't specify a type for a button, it defaults to type="submit",
+      onClick={handleGoogleClick}
       className="w-full pt-4 flex items-center justify-center gap-x-3 py-2.5 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100"
     >
       <svg

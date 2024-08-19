@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { signIn } from "../../Redux/Slices/AuthSlice";
-import OAuth from "../../Components/OAuth";
+import OAuth from "../../Components/Auth/OAuth";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
