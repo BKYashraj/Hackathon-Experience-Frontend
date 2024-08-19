@@ -41,7 +41,7 @@ function Layout({ children }) {
           className="flex items-center justify-center cursor-pointer"
           onClick={() => navigate("/")}
         >
-          <p className="md:pl-2 md:text-2xl text-xl text-black">
+          <p className="md:pl-2 md:text-2xl text-lg text-black">
             HackathonResearchHub
           </p>
         </div>
@@ -71,7 +71,7 @@ function Layout({ children }) {
           <ul>
             <div className="ml-2 flex flex-row gap-3 md:gap-8 items-center justify-center cursor-pointer relative">
               <li>
-                <button className="items-center px-2  md:px-7 py-1 text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 group">
+                <button className="items-center px-2  md:px-7 py-1 text-sm md:text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 group">
                   {isLoggedIn ? (
                     <Link onClick={handleLogout}>Logout</Link>
                   ) : (
@@ -84,7 +84,7 @@ function Layout({ children }) {
   {!isLoggedIn && (
     <Link to="/auth/signup">
       <button
-        className="w-full px-2 md:px-7 py-1 text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-colors duration-300"
+        className="w-full px-2 md:px-7 py-1 text-sm md:text-lg text-white font-bold border border-blue-500 bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-colors duration-300"
       >
         Register
       </button>
