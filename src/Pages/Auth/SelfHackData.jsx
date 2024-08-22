@@ -112,7 +112,7 @@ function SelfHackData() {
       </div>
     ) : (
       <p className="text-center text-gray-500">
-        No hackathon details available.
+        You cannot create a hackathon experience post yet. Please add your experience to get started!
       </p>
     )}
   </div>

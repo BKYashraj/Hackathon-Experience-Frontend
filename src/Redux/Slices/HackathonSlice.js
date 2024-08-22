@@ -117,15 +117,15 @@ const HackathonSlice = createSlice({
         console.log("Action Payload :", action.payload);
         state.SelfHackathonData = action?.payload?.data?.data;
       })
-      .addCase(deletehack.fulfilled, (state, action) => {
-        console.log("Action Payload:", action.payload);
-        const deletedHackathonId = action.payload.id; // Get the id of the deleted hackathon
-      
-        // Filter out the deleted hackathon from the state
-        state.SelfHackathonData = state.SelfHackathonData.filter(
-          (hackathon) => hackathon._id !== deletedHackathonId
-        );
-      });
+     .addCase(deletehack.fulfilled, (state, action) => {
+  console.log("Action Payload:", action.payload);
+  const deletedHackathonId = action.payload.id; // Get the id of the deleted hackathon
+
+  // Filter out the deleted hackathon from the state
+  state.SelfHackathonData = state.SelfHackathonData.filter(
+    (hackathon) => hackathon._id !== deletedHackathonId
+  );
+});
   },
 });
 

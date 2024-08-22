@@ -125,12 +125,14 @@ const AuthSlice = createSlice({
         state.email = action?.payload?.data?.email;
         state.name = action?.payload?.data?.firstName;
         state.photoURL = action?.payload?.data?.avatar;
+        state.id = action?.payload?.data?.id;
     
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("role", action?.payload?.data?.role);
         localStorage.setItem("email", action?.payload?.data?.email);
         localStorage.setItem("name", action?.payload?.data?.firstName);
         localStorage.setItem("photoURL", action?.payload?.data?.avatar);
+        localStorage.setItem("photoURL", action?.payload?.data?.id);
         // localStorage.setItem("data", JSON.stringify(userData));
     })
       .addCase(logout.fulfilled, (state) => {
