@@ -1,46 +1,47 @@
-import { Route, Routes } from 'react-router-dom'
-import './App.css'
-import Home from './Pages/Home'
-import Hackathon from './Pages/hackathon/Hackathon'
-import Research from './Pages/Research/Research'
-import HackathonPost from './Pages/hackathon/HackathonPost'
-import ResearchPost from './Pages/Research/ResearchPost'
-import Signup from './Pages/Auth/Signup'
-import Login from './Pages/Auth/Login'
-import NotFound from './Pages/NotFound'
-import ViewPageHack from './Pages/hackathon/ViewPageHack'
-import HackInside from './Pages/hackathon/HackInside'
-import RequireAuth from './Components/Auth/RequireAuth'
-import ViewResearchPage from './Pages/Research/ViewResearchPage'
-import Profile from './Pages/Auth/Profile'
-
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./Pages/Home";
+import Hackathon from "./Pages/hackathon/Hackathon";
+import Research from "./Pages/Research/Research";
+import HackathonPost from "./Pages/hackathon/HackathonPost";
+import ResearchPost from "./Pages/Research/ResearchPost";
+import Signup from "./Pages/Auth/Signup";
+import Login from "./Pages/Auth/Login";
+import NotFound from "./Pages/NotFound";
+import ViewPageHack from "./Pages/hackathon/ViewPageHack";
+import HackInside from "./Pages/hackathon/HackInside";
+import RequireAuth from "./Components/Auth/RequireAuth";
+import ViewResearchPage from "./Pages/Research/ViewResearchPage";
+import Profile from "./Pages/Auth/Profile";
+import EditSelfHackPost from "./Pages/Auth/Hackathon CRUD/EditSelfHackPost";
+import EditHack from "./Pages/Auth/Hackathon CRUD/EditHack";
 function App() {
-
   return (
     <>
-     <Routes>
-       <Route path="/" element={<Home />} />
-       <Route path="/hackathon" element={<Hackathon />} />
-       <Route path="/research" element={<Research />} />
-       
-       <Route path="/hackPage" element={<ViewPageHack />} />
-       <Route path="/researchPage" element={<ViewResearchPage />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/hackathon" element={<Hackathon />} />
+        <Route path="/research" element={<Research />} />
 
-       <Route path="/auth/signup" element={<Signup/>} />
-       <Route path="/auth/login" element={<Login/>} />
+        <Route path="/hackPage" element={<ViewPageHack />} />
+        <Route path="/researchPage" element={<ViewResearchPage />} />
 
+        <Route path="/auth/signup" element={<Signup />} />
+        <Route path="/auth/login" element={<Login />} />
 
-       <Route element={<RequireAuth />}>
-          <Route path="/auth/profile" element={<Profile/>} />
+        <Route element={<RequireAuth />}>
+          <Route path="/auth/profile" element={<Profile />} />
           <Route path="/hackPage/:hackId" element={<HackInside />} />
           <Route path="/hackathonPost" element={<HackathonPost />} />
-        <Route path="/researchPost" element={<ResearchPost />} />  
-       </Route>
+          <Route path="/researchPost" element={<ResearchPost />} />
+          <Route path="/hackathonpost/edit/:hackId" element={<EditSelfHackPost />} />
+          <Route path="/hackathon/edit/:id" element={<EditHack />} />
+        </Route>
 
-       <Route path="*" element={<NotFound/>} />
-     </Routes>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

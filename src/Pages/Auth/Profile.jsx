@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import profile from "../../assets/Auth/userProfile.png";
 import Layout from "../../Layouts/Layout";
-import SelfHackData from "./SelfHackData";
+import SelfHackData from "./Hackathon CRUD/SelfHackData";
 
 const UserProfile = () => {
   // Demo user data

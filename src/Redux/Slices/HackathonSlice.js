@@ -37,6 +37,54 @@ export const addPost = createAsyncThunk("hackathon/addpost", async (data) => {
   }
 });
 
+export const updatePost = createAsyncThunk(
+  "hackathon/updatepost",
+  async ({ data, id }, { rejectWithValue }) => {
+    try {
+      // Here, wrap the axios request inside toast.promise
+      const apiResponse = await toast.promise(
+        axiosInstance.post(`/hackathon/update/${id}`, data),
+        {
+          loading: "Updating your hackathon experience...",
+          success: "Hackathon experience updated successfully!",
+          error:
+            "Oops! Something went wrong while updating your experience. Please try again.",
+        }
+      );
+
+      console.log("My response", apiResponse);
+      return apiResponse;
+    } catch (error) {
+      console.log(error);
+      // Return the error using rejectWithValue to handle it in the reducer
+      return rejectWithValue(error.response?.data || "Something went wrong");
+    }
+  }
+);
+
+// export const updatePost = createAsyncThunk(
+//   "hackathon/updatepost",
+//   async ({ data, id }) => {
+//     try {
+//       const response = await axiosInstance.post(`/hackathon/update/${id}`, data);
+
+//       toast.promise(response, {
+//         loading: "Adding your hackathon experience...",
+//         success: "Hackathon experience added successfully!",
+//         error:
+//           "Oops! Something went wrong while adding your experience. Please try again.",
+//       });
+
+//       const apiResponse = await response;
+//       console.log("My response", apiResponse);
+//       return apiResponse;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// );
+
+// Give one entry
 export const getHackDetails = createAsyncThunk(
   "/products/getDetails",
   async (id) => {
@@ -117,15 +165,15 @@ const HackathonSlice = createSlice({
         console.log("Action Payload :", action.payload);
         state.SelfHackathonData = action?.payload?.data?.data;
       })
-     .addCase(deletehack.fulfilled, (state, action) => {
-  console.log("Action Payload:", action.payload);
-  const deletedHackathonId = action.payload.id; // Get the id of the deleted hackathon
+      .addCase(deletehack.fulfilled, (state, action) => {
+        console.log("Action Payload:", action.payload);
+        const deletedHackathonId = action.payload.id; // Get the id of the deleted hackathon
 
-  // Filter out the deleted hackathon from the state
-  state.SelfHackathonData = state.SelfHackathonData.filter(
-    (hackathon) => hackathon._id !== deletedHackathonId
-  );
-});
+        // Filter out the deleted hackathon from the state
+        state.SelfHackathonData = state.SelfHackathonData.filter(
+          (hackathon) => hackathon._id !== deletedHackathonId
+        );
+      });
   },
 });
 

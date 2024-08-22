@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deletehack, getSelfHackDetails } from "../../Redux/Slices/HackathonSlice";
+import { deletehack, getSelfHackDetails } from "../../../Redux/Slices/HackathonSlice";
 import { Link } from "react-router-dom";
 
 
@@ -95,7 +95,7 @@ function SelfHackData() {
             {/* Edit and Delete buttons */}
             <div className="mt-4 flex flex-col space-x-4 space-y-4 items-center ">
               <Link
-                to={`/editHackathon/${hackathon._id}`}
+                to={`/hackathon/edit/${hackathon._id}`}
                 className="inline-flex items-center py-2 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 ml-4 px-6 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
               >
                 Edit
