@@ -58,7 +58,7 @@ function HackathonPost() {
       console.log(apiResponse);
 
       if (apiResponse.payload.data.success) {
-        navigate("/hackPage");
+        navigate("/auth/profile");
       }
     } catch (error) {
       console.error("Error adding hackathon experience:", error);
