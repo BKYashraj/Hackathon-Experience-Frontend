@@ -11,7 +11,7 @@ import Networking from "../assets/networking.png";
 import paper from "../assets/paper2.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllPosts } from "../Redux/Slices/HackathonSlice";
+import { getAllPosts, getSelfHackDetails } from "../Redux/Slices/HackathonSlice";
 function Home() {
   const dispatch = useDispatch();
 

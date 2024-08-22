@@ -1,15 +1,11 @@
 import { useSelector } from "react-redux";
 import profile from "../../assets/Auth/userProfile.png";
 import Layout from "../../Layouts/Layout";
+import SelfHackData from "./SelfHackData";
 
 const UserProfile = () => {
   // Demo user data
   const user = useSelector((state) => state.auth);
-
-  const hackathons = [
-    { id: 1, title: 'Hackathon X', theme: 'AI & Robotics' },
-    { id: 2, title: 'Innovate 2024', theme: 'Blockchain Solutions' },
-  ];
 
   const papers = [
     { id: 1, title: 'Quantum Computing 101', domain: 'Quantum Mechanics' },
@@ -23,75 +19,51 @@ const UserProfile = () => {
 
   return (
     <Layout>
-      <div className="container mx-auto p-8 bg-white min-h-screen">
+      <div className="container mx-auto p-4 sm:p-6 md:p-8 bg-white min-h-screen">
         {/* Header Section */}
-        <div className="mb-8 flex content-center justify-center">
-          <h1 className="text-4xl font-bold text-black">My&nbsp;</h1>
-          <h1 className="text-4xl font-bold text-yellow-400"> Profile</h1>
+        <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-center justify-center text-center sm:text-left">
+          <h1 className="text-3xl sm:text-4xl font-bold text-black">My&nbsp;</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-yellow-400">Profile</h1>
         </div>
 
         {/* Profile Section */}
-        <div className="bg-white p-8 rounded-lg shadow-md mb-8 max-w-3xl mx-auto">
-          <div className="flex items-center space-x-8">
+        <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md mb-6 max-w-7xl mx-auto">
+          <div className="flex flex-col items-center space-y-4 sm:space-y-0 sm:space-x-8">
             <img
               src={user.photoURL || profile}
               alt="User Profile"
-              className="w-24 h-24 rounded-full border-4 border-gray-200 object-cover shadow-lg"
+              className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-gray-200 object-cover shadow-lg"
             />
-            <div className="flex-1 text-left ">
-              <h1 className="text-4xl font-extrabold text-gray-800">{user.name || user.data.firstName}</h1>
+            <div className="flex-1 pt-2 text-center sm:text-left">
+              <h1 className="text-3xl sm:text-2xl font-extrabold text-gray-800">Name : {user.name || user.data.firstName}</h1>
               <p className="text-gray-600 mt-2">
-                <span className="text-xl font-bold text-black">Email: </span><span className="text-xl text-black font-medium">{user.email || user.data.email}</span> 
+                <span className="text-2xl font-bold text-black">Email: </span><span className="text-xl text-black font-medium">{user.email || user.data.email}</span> 
               </p>
               <p className="text-gray-600 mt-1">
-                <span className="text-xl font-bold text-black">Role:</span> <span className="text-xl text-black font-medium">{user.role}</span>
+                <span className="text-2xl font-bold text-black">Role:</span> <span className="text-xl text-black font-medium">{user.role}</span>
               </p>
             </div>
           </div>
         </div>
 
-        {/* Hackathons Section */}
-        <div className="bg-white p-6 rounded-lg shadow-md mb-8 max-w-3xl mx-auto">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">Your Hackathons</h2>
-          {hackathons.length > 0 ? (
-            hackathons.map((hackathon) => (
-              <div
-                key={hackathon.id}
-                className="bg-gray-50 p-4 mb-4 rounded-lg shadow-sm flex justify-between items-center transform hover:shadow-lg transition duration-300"
-              >
-                <div>
-                  <h3 className="text-xl font-bold text-gray-800">{hackathon.title}</h3>
-                  <p className="text-gray-600">{hackathon.theme}</p>
-                </div>
-                <button
-                  onClick={() => handleEditPost(hackathon.id)}
-                  className="text-blue-500 hover:underline"
-                >
-                  Edit
-                </button>
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-600">You haven't uploaded any hackathons yet.</p>
-          )}
-        </div>
+        <SelfHackData/>
 
         {/* Papers Section */}
-        <div className="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">Your Papers</h2>
+        <div className="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-md max-w-3xl mx-auto">
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6">Your Papers</h2>
           {papers.length > 0 ? (
             papers.map((paper) => (
               <div
                 key={paper.id}
-                className="bg-gray-50 p-4 mb-4 rounded-lg shadow-sm flex justify-between items-center transform hover:shadow-lg transition duration-300"
+                className="bg-gray-50 p-4 mb-4 rounded-lg shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center transform hover:shadow-lg transition duration-300"
               >
-                <div>
-                  <h3 className="text-xl font-bold text-gray-800">{paper.title}</h3>
+                <div className="mb-4 sm:mb-0">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-800">{paper.title}</h3>
                   <p className="text-gray-600">{paper.domain}</p>
                 </div>
                 <button
                   onClick={() => handleEditPost(paper.id)}
-                  className="text-blue-500 hover:underline"
+                  className="text-blue-500 hover:underline mt-2 sm:mt-0"
                 >
                   Edit
                 </button>
