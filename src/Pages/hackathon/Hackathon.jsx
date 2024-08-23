@@ -146,6 +146,13 @@ function Hackathon() {
                 No hackathon details available.
               </p>
             )}
+            <div className="flex justify-center content-center pt-6">
+              <Link to="/hackPage">
+              <button className="bg-blue-500 justify-center hover:bg-blue-700 text-white font-bold py-3 px-5 rounded-full">
+                View All Hackathon Experiences
+              </button>
+              </Link>
+            </div>
           </div>
         </section>
 

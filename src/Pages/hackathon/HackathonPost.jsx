@@ -3,6 +3,7 @@ import Layout from "../../Layouts/Layout";
 import { addPost } from "../../Redux/Slices/HackathonSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import confetti from "canvas-confetti";
 
 function HackathonPost() {
 
@@ -59,6 +60,14 @@ function HackathonPost() {
 
       if (apiResponse.payload.data.success) {
         navigate("/auth/profile");
+        confetti({
+          particleCount: 400, // Adjust the number of confetti pieces
+          angle: 90, // Direction of the confetti
+          spread: 360, // Spread in a circle
+          origin: { y: 0.6 }, // Starting point
+          size: 2, // Size of the confetti pieces
+          scalar: 1.5, // Scale the size
+        });
       }
     } catch (error) {
       console.error("Error adding hackathon experience:", error);

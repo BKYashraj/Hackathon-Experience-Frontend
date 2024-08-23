@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../../Redux/Slices/HackathonSlice";
 import Layout from "../../Layouts/Layout";
@@ -12,9 +12,31 @@ function ViewPageHack() {
     (state) => state.hackathons.hackathonsData
   );
 
+  
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
   useEffect(() => {
     dispatch(getAllPosts());
   }, []);
+   // Calculate the indices for slicing the array
+   const indexOfLastItem = currentPage * itemsPerPage;
+   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+   const currsentItem = hackathonsData.slice(indexOfFirstItem, indexOfLastItem);
+ 
+   const totalPages = Math.ceil(hackathonsData.length / itemsPerPage);
+ 
+   const handleNextPage = () => {
+     if (currentPage < totalPages) {
+       setCurrentPage(currentPage + 1);
+     }
+   };
+ 
+   const handlePrevPage = () => {
+     if (currentPage > 1) {
+       setCurrentPage(currentPage - 1);
+     }
+   };
   return (
     <Layout>
     <section className="bg-gray-100">
@@ -27,9 +49,9 @@ function ViewPageHack() {
               achievements. Join our community and let your experience shine as
               a top highlight. Your story could be the next to inspire!
             </p>
-            {hackathonsData.length > 0 ? (
+            {currsentItem.length > 0 ? (
               <div className="space-y-8">
-                {hackathonsData.map((hackathon) => (
+                {currsentItem.map((hackathon) => (
                   <div
                     key={hackathon._id}
                     className="flex flex-col md:flex-row items-center bg-white p-8 rounded-lg shadow-lg border border-gray-200 relative"
@@ -96,7 +118,34 @@ function ViewPageHack() {
                 No hackathon details available.
               </p>
             )}
+
+<div className="flex justify-between mt-8">
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className={`${
+                currentPage === 1
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-700 text-white"
+              } font-bold py-2 px-4 rounded`}
+            >
+              Previous
+            </button>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className={`${
+                currentPage === totalPages
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-700 text-white"
+              } font-bold py-2 px-4 rounded`}
+            >
+              Next
+            </button>
           </div>
+
+          </div>
+
         </section>
         </Layout>
   )
