@@ -14,7 +14,7 @@ const OAuth = () => {
       const auth = getAuth(app); // Assuming `app` is already initialized in your Firebase setup
 
       const result = await signInWithPopup(auth, provider);
-      console.log(result);
+      console.log("Result isssss",result);
 
       const userData = {
         name: result.user.displayName,
