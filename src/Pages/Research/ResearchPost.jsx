@@ -1,75 +1,95 @@
-// import { useState } from "react";
+import { useState } from "react";
 import Layout from "../../Layouts/Layout";
+import confetti from "canvas-confetti";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addPost2 } from "../../Redux/Slices/ReseacrchSlice";
 
-import { Link } from 'react-router-dom';
-import { FaTools } from 'react-icons/fa';
+// import { Link } from 'react-router-dom';
+// import { FaTools } from 'react-icons/fa';
 
 function ResearchPost() {
-  // const [formData, setFormData] = useState({
-  //   hackathonName: "",
-  //   title: "",
-  //   themeOrDomain: "",
-  //   category: "",
-  //   mentorName: "",
-  //   teamMembersNames: "",
-  //   techStack: "",
-  //   overallExperience: "",
-  //   challenges: "",
-  //   winningPhoto: "",
-  //   keyTipsForJuniors: "",
-  //   projectDemoLink: "",
-  // });
 
-  // const handleChange = (e) => {
-  //   const { name, value, type, files } = e.target;
-  //   if (type === "file") {
-  //     setFormData({ ...formData, [name]: files[0] });
-  //   } else {
-  //     setFormData({ ...formData, [name]: value });
-  //   }
-  // };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Handle form submission
-  //   console.log(formData);
-  // };
+  const [formData, setFormData] = useState({
+    PaperTitle: "",
+    Domain: "",
+    Abstract: "",
+    AuthorsNames: "",
+    mentorName: "",
+    InstituteName: "",
+    JournalName: "",
+    overallExperience: "",
+    keyTipsForJuniors: "",
+    Conclusion: "",
+    winningPhoto: "",
+    PaperLink: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, files } = e.target;
+    if (type === "file") {
+      setFormData({ ...formData, [name]: files[0] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
+  const [winningPhoto, setWinningPhoto] = useState(null);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+  
+    // Create a new FormData object
+    const form = new FormData();
+    
+    // Append each field from formData to FormData
+    for (const [key, value] of Object.entries(formData)) {
+      form.append(key, value);
+    }
+  
+    // Append file to FormData if it exists
+    if (winningPhoto) {
+      form.append("winningPhoto", winningPhoto);
+    }
+  
+    // Dispatch the action with the form data
+    try {
+      const apiResponse = await dispatch(addPost2(form)); // Ensure addPost2 is the correct action
+      console.log('API Response:', apiResponse);
+  
+      // Check if payload exists and contains success status
+      if (apiResponse.payload.success) {
+        navigate("/auth/profile");
+        
+        // Confetti celebration
+        confetti({
+          particleCount: 400, // Adjust the number of confetti pieces
+          angle: 90, // Direction of the confetti
+          spread: 360, // Spread in a circle
+          origin: { y: 0.6 }, // Starting point
+          size: 2, // Size of the confetti pieces
+          scalar: 1.5, // Scale the size
+        });
+      } else {
+        console.error("Unexpected response structure:", apiResponse);
+      }
+    } catch (error) {
+      console.error("Error adding research post:", error);
+    }
+  }
+  
+  
 
   return (
     <Layout>
-    
-    
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-6 py-12">
-      <div className="text-center mb-8">
-        <FaTools className="text-6xl text-yellow-500 mb-4" />
-        <h1 className="text-5xl font-extrabold text-gray-800 mb-4">
-          Page Under Construction
-        </h1>
-        <p className="text-lg text-gray-600 mb-6">
-          We are working hard to bring this page to you soon. Stay tuned!
-        </p>
-        <Link
-          to="/"
-          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-200"
-        >
-          Go Back to Home
-        </Link>
-      </div>
-      <div className="relative w-full max-w-lg">
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-300 to-yellow-500 opacity-30 rounded-lg"></div>
-        <div className="relative z-10 bg-white shadow-lg rounded-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Whats Coming?</h2>
-          <p className="text-gray-600">
-            We are busy improving our website and working on new features to provide you with a better experience. Check back later to see the latest updates and improvements!
-          </p>
-        </div>
-      </div>
-    </div>
-
-
-      {/* <div className="max-w-4xl bg-gray-100 rounded-lg shadow-lg mx-auto my-12 p-8">
+      <div className="max-w-7xl bg-gray-100 rounded-lg shadow-lg mx-auto my-12 p-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-extrabold text-gray-800">Share Your Research Work</h2>
+          <h2 className="text-3xl font-extrabold text-gray-800">
+            Share Your Research Work
+          </h2>
         </div>
         <form onSubmit={handleSubmit} className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -79,8 +99,8 @@ function ResearchPost() {
               </label>
               <input
                 type="text"
-                name="hackathonName"
-                value={formData.hackathonName}
+                name="PaperTitle"
+                value={formData.PaperTitle}
                 onChange={handleChange}
                 className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
                 required
@@ -88,12 +108,12 @@ function ResearchPost() {
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
-                Domain Name <span className="text-red-600">*</span>
+                Domain <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
-                name="title"
-                value={formData.title}
+                name="Domain"
+                value={formData.Domain}
                 onChange={handleChange}
                 className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
                 required
@@ -101,33 +121,40 @@ function ResearchPost() {
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
-                Theme/Domain <span className="text-red-600">*</span>
+                Abstract <span className="text-red-600">*</span>
+              </label>
+              <textarea
+                name="Abstract"
+                value={formData.Abstract}
+                onChange={handleChange}
+                className="w-full border border-gray-300 p-4 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-2">
+                Overall Experience <span className="text-red-600">*</span>
+              </label>
+              <textarea
+                name="overallExperience"
+                value={formData.overallExperience}
+                onChange={handleChange}
+                className="w-full border border-gray-300 p-4 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-2">
+                Authors' Names <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
-                name="themeOrDomain"
-                value={formData.themeOrDomain}
+                name="AuthorsNames"
+                value={formData.AuthorsNames}
                 onChange={handleChange}
                 className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
                 required
               />
-            </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Category <span className="text-red-600">*</span>
-              </label>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
-                required
-              >
-                <option value="">Select Category</option>
-                <option value="Software">Software</option>
-                <option value="Hardware">Hardware</option>
-                <option value="Other">Other</option>
-              </select>
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
@@ -148,12 +175,12 @@ function ResearchPost() {
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
-                Team Members Names <span className="text-red-600">*</span>
+                Institute Name <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
-                name="teamMembersNames"
-                value={formData.teamMembersNames}
+                name="InstituteName"
+                value={formData.InstituteName}
                 onChange={handleChange}
                 className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
                 required
@@ -161,35 +188,24 @@ function ResearchPost() {
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
-                Tech Stack
+                Journal Name
               </label>
               <input
                 type="text"
-                name="techStack"
-                value={formData.techStack}
+                name="JournalName"
+                value={formData.JournalName}
                 onChange={handleChange}
                 className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
               />
             </div>
+            
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
-                Overall Experience <span className="text-red-600">*</span>
+                Conclusion <span className="text-red-600">*</span>
               </label>
               <textarea
-                name="overallExperience"
-                value={formData.overallExperience}
-                onChange={handleChange}
-                className="w-full border border-gray-300 p-4 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Challenges Faced <span className="text-red-600">*</span>
-              </label>
-              <textarea
-                name="challenges"
-                value={formData.challenges}
+                name="Conclusion"
+                value={formData.Conclusion}
                 onChange={handleChange}
                 className="w-full border border-gray-300 p-4 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
                 required
@@ -220,12 +236,12 @@ function ResearchPost() {
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
-                Project Demo Link
+                Paper Link
               </label>
               <input
                 type="text"
-                name="projectDemoLink"
-                value={formData.projectDemoLink}
+                name="PaperLink"
+                value={formData.PaperLink}
                 onChange={handleChange}
                 className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
               />
@@ -234,13 +250,14 @@ function ResearchPost() {
           <div className="text-center mt-8">
             <button
               type="submit"
+              onClick={handleSubmit}
               className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition duration-200"
             >
               Post
             </button>
           </div>
         </form>
-      </div> */}
+      </div>
     </Layout>
   );
 }

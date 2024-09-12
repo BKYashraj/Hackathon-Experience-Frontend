@@ -20,8 +20,9 @@ export const getAllPosts = createAsyncThunk("/products/getAll", async () => {
 
 export const addPost = createAsyncThunk("hackathon/addpost", async (data) => {
   try {
+    console.log("Data is ",data)
     const response = axiosInstance.post("/hackathon", data);
-
+    
     toast.promise(response, {
       loading: "Adding your hackathon experience...",
       success: "Hackathon experience added successfully!",
@@ -150,6 +151,9 @@ export const deletehack = createAsyncThunk("hack/delete", async (id) => {
     console.log(error);
   }
 });
+
+
+// For reseacr
 
 const HackathonSlice = createSlice({
   name: "hackathons",

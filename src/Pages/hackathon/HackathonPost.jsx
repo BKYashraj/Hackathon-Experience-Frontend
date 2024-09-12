@@ -37,7 +37,7 @@ function HackathonPost() {
   
   const [winningPhoto, setWinningPhoto] = useState(null);
 
-   async function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     // Create a new FormData object
