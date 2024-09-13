@@ -124,6 +124,7 @@ function Hackathon() {
                           <strong>Team Members:</strong>{" "}
                           {hackathon.teamMembersNames}
                         </p>
+                        
                         {hackathon.projectDemoLink && (
                           <p>
                             <a

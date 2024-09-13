@@ -5,8 +5,6 @@ import toast from "react-hot-toast";
 const initialState = {
   ResearchData: [],
   SelfResearchData: [],
-  status: 'idle', // Added for tracking the status
-  error: null, // Added for tracking errors
 };
 
 export const addPost2 = createAsyncThunk("research/addpost", async (data) => {
@@ -41,7 +39,37 @@ export const addPost2 = createAsyncThunk("research/addpost", async (data) => {
   }
 });
 
+export const getAllResearch = createAsyncThunk("/products/getAll", async () => {
+  try {
+    const products = await axiosInstance.get("/paper");
+    console.log("New Product detyails",products);
+    toast.success("Posts loaded successfully");
+    return products;
+  } catch (error) {
+    console.log(error);
+    toast.error("Something went wrong");
+  }
+});
 
+export const getresearchDetails = createAsyncThunk(
+  "/products/getDetails",
+  async (id) => {
+    try {
+      const product = axiosInstance.get(`/paper/${id}`);
+      toast.promise(product, {
+        loading: "Loading the Post",
+        error: "Something went cannot load post",
+        success: "Post loaded successfully",
+      });
+      const apiResponse = await product;
+      console.log(apiResponse);
+      return apiResponse;
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  }
+);
 
 const ResearchSlice = createSlice({
   name: "research",
@@ -51,18 +79,10 @@ const ResearchSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(addPost2.pending, (state) => {
-        state.status = 'loading'; // Set status to loading
-        state.error = null; // Clear previous errors
-      })
-      .addCase(addPost2.fulfilled, (state, action) => {
-        state.status = 'succeeded'; // Set status to succeeded
-        state.ResearchData.push(action.payload); // Add the new research data
-      })
-      .addCase(addPost2.rejected, (state, action) => {
-        state.status = 'failed'; // Set status to failed
-        state.error = action.payload; // Set the error
-      });
+    .addCase(getAllResearch.fulfilled, (state, action) => {
+      console.log("Action Payload for:", action.payload);
+      state.ResearchData = action?.payload?.data?.data;
+    })
   },
 });
 

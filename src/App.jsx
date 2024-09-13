@@ -11,10 +11,11 @@ import NotFound from "./Pages/NotFound";
 import ViewPageHack from "./Pages/hackathon/ViewPageHack";
 import HackInside from "./Pages/hackathon/HackInside";
 import RequireAuth from "./Components/Auth/RequireAuth";
-import ViewResearchPage from "./Pages/Research/ViewResearchPage";
+import ViewMorePage from "./Pages/Research/ViewMorePage";
 import Profile from "./Pages/Auth/Profile";
 import EditSelfHackPost from "./Pages/Auth/Hackathon CRUD/EditSelfHackPost";
 import EditHack from "./Pages/Auth/Hackathon CRUD/EditHack";
+import InsideResearch from "./Pages/Research/insideResearch";
 function App() {
   return (
     <>
@@ -24,7 +25,7 @@ function App() {
         <Route path="/research" element={<Research />} />
 
         <Route path="/hackPage" element={<ViewPageHack />} />
-        <Route path="/researchPage" element={<ViewResearchPage />} />
+        <Route path="/researchPage" element={<ViewMorePage />} />
 
         <Route path="/auth/signup" element={<Signup />} />
         <Route path="/auth/login" element={<Login />} />
@@ -32,6 +33,7 @@ function App() {
         <Route element={<RequireAuth />}>
           <Route path="/auth/profile" element={<Profile />} />
           <Route path="/hackPage/:hackId" element={<HackInside />} />
+          <Route path="/ReserachPaper/:hackId" element={<InsideResearch />} />
           <Route path="/hackathonPost" element={<HackathonPost />} />
           <Route path="/researchPost" element={<ResearchPost />} />
           <Route path="/hackathonpost/edit/:hackId" element={<EditSelfHackPost />} />

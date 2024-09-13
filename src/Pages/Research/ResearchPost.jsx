@@ -156,7 +156,7 @@ function ResearchPost() {
                 required
               />
             </div>
-            <div>
+            {/* <div>
               <label className="block text-gray-700 font-semibold mb-2">
                 Mentor Name <span className="text-red-600">*</span>
               </label>
@@ -172,6 +172,19 @@ function ResearchPost() {
                 <option value="Gondhalekar">Gondhalekar</option>
                 <option value="Smita Patil">Smita Patil</option>
               </select>
+            </div> */}
+             <div>
+              <label className="block text-gray-700 font-semibold mb-2">
+              mentor Name <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="text"
+                name="mentorName"
+                value={formData.mentorName}
+                onChange={handleChange}
+                className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
+                required
+              />
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
@@ -236,7 +249,7 @@ function ResearchPost() {
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
-                Paper Link
+                Paper Link (Google Drive)
               </label>
               <input
                 type="text"

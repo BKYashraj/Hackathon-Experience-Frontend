@@ -1,22 +1,23 @@
 import { useState, useEffect } from "react";
 import Layout from "../../Layouts/Layout";
 import { useParams, useNavigate } from "react-router-dom";
-import { getHackDetails } from "../../Redux/Slices/HackathonSlice";
 import { useDispatch } from "react-redux";
-
-function HackInside() {
+import { getresearchDetails } from "../../Redux/Slices/ReseacrchSlice";
+import PDF from "../../assets/PDF/PDF.png";
+function InsideResearch() {
+  
   const { hackId } = useParams();
   console.log("yash",hackId)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [hackathonsData, setHackathonsData] = useState({});
+  const [hackathonsData,  setResearchData] = useState({});
 
   useEffect(() => {
     async function fetchHackDetails() {
       try {
-        const action = await dispatch(getHackDetails(hackId));
-        if (getHackDetails.fulfilled.match(action)) {
-          setHackathonsData(action.payload.data.data);
+        const action = await dispatch(getresearchDetails(hackId));
+        if (getresearchDetails.fulfilled.match(action)) {
+          setResearchData(action.payload.data.data);
         }
       } catch (error) {
         console.error("Error fetching hackathon details:", error);
@@ -25,7 +26,7 @@ function HackInside() {
 
     fetchHackDetails();
   }, [dispatch, hackId]);
-
+  
   return (
     <Layout>
       <section className="bg-gray-100 overflow-hidden text-gray-600 body-font">
@@ -42,26 +43,45 @@ function HackInside() {
               </div>
               <div className="w-full lg:w-1/2">
                 <h3 className="text-3xl font-extrabold text-gray-900 mt-2 mb-7 border-b-2 border-gray-200 pb-2">
-                  {hackathonsData?.hackathonName} Experience
+                  {hackathonsData?.JournalName} Publication
                 </h3>
                 <p className="text-xl font-medium text-gray-800 mb-6">
-                  <strong>Title:</strong> {hackathonsData?.title}
+                  <strong>Title:</strong> {hackathonsData?.PaperTitle}
                 </p>
                 <p className="text-xl font-medium text-gray-800 mb-6">
-                  <strong>Theme/Domain:</strong> {hackathonsData?.themeOrDomain}
+                  <strong>Domain:</strong> {hackathonsData?.Domain}
                 </p>
+                
+               
                 <p className="text-xl font-medium text-gray-800 mb-6">
-                  <strong>Category:</strong> {hackathonsData?.category}
-                </p>
-                <p className="text-xl font-medium text-gray-800 mb-6">
-                  <strong>Tech Stack:</strong> {hackathonsData?.techStack}
-                </p>
-                <p className="text-xl font-medium text-gray-800 mb-6">
-                  <strong>Team Members:</strong> {hackathonsData?.teamMembersNames}
+                  <strong>Author Name:</strong> {hackathonsData?.AuthorsNames}
                 </p>
                 <p className="text-xl font-medium text-gray-800 mb-6">
                   <strong>Mentor Name:</strong> {hackathonsData?.mentorName}
                 </p>
+
+{/* Separate PDF Download Image */}
+{hackathonsData.PaperLink && (
+                    <div className="mt-4 md:ml-6  flex ">
+                      <a
+                        href={hackathonsData.PaperLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-2 border border-gray-300 rounded-md hover:bg-gray-100 p-2"
+                      >
+                        <img
+                          src={PDF}
+                          alt="PDF"
+                          width={40} // Set a consistent width
+                          height={40} // Set a consistent height
+                          className="object-cover" // Ensure the image maintains aspect ratio
+                        />
+                        <span className="text-red-500 hidden md:inline">Download</span>
+                      </a>
+                    </div>
+                  )}
+
+
               </div>
             </div>
 
@@ -69,30 +89,22 @@ function HackInside() {
               <strong>Experience:</strong> {hackathonsData?.overallExperience}
             </p>
             
-            <p className="text-xl font-medium text-gray-800 mb-4">
-              <strong>Challenges Faced:</strong> {hackathonsData?.challenges}
-            </p>
+            
             <p className="text-xl font-medium text-gray-800 mb-4">
               <strong>Key Tips for Juniors:</strong>{" "}
               {hackathonsData?.keyTipsForJuniors}
             </p>
+            <p className="text-xl font-medium text-gray-800 mb-6">
+                  <strong>Abstract:</strong> {hackathonsData?.Abstract}
+                </p>
+            <p className="text-xl font-medium text-gray-800 mb-4">
+              <strong>Conclusion:</strong>{" "}
+              {hackathonsData?.Conclusion}
+            </p>
+           
 
-            <div className="text-xl font-medium text-gray-800 mb-2">
-              <strong>Project Demo Link:</strong>{" "}
-              {hackathonsData?.projectDemoLink ? (
-                <a
-                  href={hackathonsData.projectDemoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline text-lg"
-                >
-                  {hackathonsData?.hackathonName}
-                </a>
-              ) : (
-                <span>No demo link available.</span>
-              )}
-            </div>
           </div>
+           
           <div className="p-4">
           <button
             onClick={() => navigate(-1)}
@@ -106,7 +118,7 @@ function HackInside() {
         
       </section>
     </Layout>
-  );
+  )
 }
 
-export default HackInside;
+export default InsideResearch
