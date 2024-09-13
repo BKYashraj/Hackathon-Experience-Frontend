@@ -15,7 +15,7 @@ import ViewMorePage from "./Pages/Research/ViewMorePage";
 import Profile from "./Pages/Auth/Profile";
 import EditSelfHackPost from "./Pages/Auth/Hackathon CRUD/EditSelfHackPost";
 import EditHack from "./Pages/Auth/Hackathon CRUD/EditHack";
-import InsideResearch from "./Pages/Research/insideResearch";
+import InsideResearch from "./Pages/Research/InsideResearch";
 function App() {
   return (
     <>
