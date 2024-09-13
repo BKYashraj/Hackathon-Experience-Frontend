@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 const initialState = {
   ResearchData: [],
   SelfResearchData: [],
+  status: 'idle', // Added for tracking the status
+  error: null, // Added for tracking errors
 };
 
 export const addPost2 = createAsyncThunk("research/addpost", async (data) => {
