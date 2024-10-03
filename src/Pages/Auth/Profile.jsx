@@ -45,7 +45,7 @@ const UserProfile = () => {
         </div>
 
         <SelfHackData/>
-        {/* <SelfResearchData/> */}
+        <SelfResearchData/>
 
         
       </div>

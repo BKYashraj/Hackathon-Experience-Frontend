@@ -73,6 +73,53 @@ export const getresearchDetails = createAsyncThunk(
   }
 );
 
+export const getSelfResearchDetails = createAsyncThunk(
+  "/products/self/getResearchDetails",
+  async (_, thunkAPI) => {
+    try {
+      // Access the state using thunkAPI
+      const state = thunkAPI.getState();
+
+      // Assuming the ID is stored in state, adjust the path based on your state structure
+      const id = state.auth.id || state.auth.data.id; // Replace with actual state path to the ID
+
+      // If the ID is retrieved in some other way, adjust accordingly
+
+      // Make the API call with the retrieved ID
+      const product = axiosInstance.get(`/users/papers/${id}`);
+      console.log("product aaaaaaaaa: ",product)
+      toast.promise(product, {
+        loading: "Loading the Research",
+        error: "Something went wrong, cannot load post",
+        success: "Your Research Posts loaded successfully",
+      });
+      return product;
+      // const apiResponse = await product.data.data;
+      // console.log("YahsrajDesale", apiResponse.payload.data.data);
+      // return apiResponse;
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  }
+);
+
+export const deletePaper = createAsyncThunk("paper/delete", async (id) => {
+  try {
+    const response = axiosInstance.delete(`/paper/${id}`);
+
+    toast.promise(response, {
+      loading: "Deleting...",
+      success: "Deleted successfully",
+      error: "Ohh No!, something went wrong. Please try again",
+    });
+
+    return { id };
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 const ResearchSlice = createSlice({
   name: "research",
   initialState,
@@ -84,7 +131,16 @@ const ResearchSlice = createSlice({
     .addCase(getAllResearch.fulfilled, (state, action) => {
       console.log("Action Payload for:", action.payload);
       state.ResearchData = action?.payload?.data?.data;
-    })
+    }).addCase(getSelfResearchDetails.fulfilled, (state, action) => {
+      console.log("Action Payload :", action.payload);
+      state.SelfResearchData = action?.payload?.data?.data;
+    }).addCase(deletePaper.fulfilled, (state, action) => {
+      console.log("Action Payload:", action.payload);
+      const deletedPaperId = action.payload.id; // Get the id of the deleted hackathon
+
+      // Filter out the deleted hackathon from the state
+      state.SelfResearchData = state.SelfResearchData.filter(paper => paper._id !== deletedPaperId);
+    });
   },
 });
 

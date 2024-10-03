@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deletehack, getSelfHackDetails } from "../../../Redux/Slices/HackathonSlice";
 import { Link } from "react-router-dom";
-
+import Swal from 'sweetalert2';
 function SelfHackData() {
   const dispatch = useDispatch();
   
@@ -25,15 +25,77 @@ function SelfHackData() {
   }, [hackathonsData]);
 
   // Handle delete operation
-  const handleDelete = async (id) => {
-    console.log("idddddd :", id);
-    const result = await dispatch(deletehack(id));
+  // const handleDelete = async (id) => {
+  //   if (window.confirm("Are you sure you want to delete this post?")) {
+  //     try {
+  //       const result = await dispatch(deletehack(id));
+  //       if (result.meta.requestStatus === 'fulfilled') {
+  //         setLocalHackathonsData((prevData) =>
+  //           prevData.filter((hackathon) => hackathon._id !== id)
+  //         );
+  //         console.log("Deleted successfully");
+  //       } else {
+  //         console.error("Failed to delete the post.");
+  //       }
+  //     } catch (error) {
+  //       console.error("An error occurred while deleting the post:", error);
+  //     }
+  //   }
+  // };
 
-    if (result.meta.requestStatus === 'fulfilled') {
-      setLocalHackathonsData((prevData) =>
-        prevData.filter((hackathon) => hackathon._id !== id)
-      );
-      console.log("Deleted successfully");
+  const handleDelete = async (id) => {
+    // Show a confirmation dialog using SweetAlert2
+    const confirmation = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to undo this action!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    });
+  
+    if (confirmation.isConfirmed) {
+      try {
+        // Dispatch the delete action
+        const result = await dispatch(deletehack(id));
+  
+        if (result.meta.requestStatus === 'fulfilled') {
+          // Remove the item from the local state
+          setLocalHackathonsData((prevData) =>
+            prevData.filter((hackathon) => hackathon._id !== id)
+          );
+  
+          // Show success popup
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'Your hackathon post has been deleted.',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+          });
+        } else {
+          // Show error popup in case of failure
+          Swal.fire({
+            title: 'Error!',
+            text: 'Failed to delete the post. Please try again.',
+            icon: 'error',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+          });
+        }
+      } catch (error) {
+        // Show error popup in case of an exception
+        Swal.fire({
+          title: 'Error!',
+          text: 'An unexpected error occurred. Please try again later.',
+          icon: 'error',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK'
+        });
+        console.error("An error occurred while deleting the post:", error);
+      }
     }
   };
 

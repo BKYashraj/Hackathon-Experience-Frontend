@@ -107,7 +107,7 @@ export const getHackDetails = createAsyncThunk(
 );
 
 export const getSelfHackDetails = createAsyncThunk(
-  "/products/self/getDetails",
+  "/products/self/getHackDetails",
   async (_, thunkAPI) => {
     try {
       // Access the state using thunkAPI
@@ -119,16 +119,15 @@ export const getSelfHackDetails = createAsyncThunk(
       // If the ID is retrieved in some other way, adjust accordingly
 
       // Make the API call with the retrieved ID
-      const product = axiosInstance.get(`/users/hacks/${id}`);
-      toast.promise(product, {
+      const product2 = axiosInstance.get(`/users/hacks/${id}`);
+      toast.promise(product2, {
         loading: "Loading the Post",
         error: "Something went wrong, cannot load post",
         success: "Your Posts loaded successfully",
       });
 
-      const apiResponse = await product;
-      console.log("aaaaaaaaaaaaaaa", apiResponse);
-      return apiResponse;
+      
+      return product2;
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
@@ -170,14 +169,13 @@ const HackathonSlice = createSlice({
         state.SelfHackathonData = action?.payload?.data?.data;
       })
       .addCase(deletehack.fulfilled, (state, action) => {
-        console.log("Action Payload:", action.payload);
         const deletedHackathonId = action.payload.id; // Get the id of the deleted hackathon
-
+    
         // Filter out the deleted hackathon from the state
         state.SelfHackathonData = state.SelfHackathonData.filter(
           (hackathon) => hackathon._id !== deletedHackathonId
         );
-      });
+    });
   },
 });
 
