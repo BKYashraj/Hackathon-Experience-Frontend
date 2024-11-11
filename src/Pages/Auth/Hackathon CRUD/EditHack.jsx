@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import Layout from "../../../Layouts/Layout";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getHackDetails, updatePost } from "../../../Redux/Slices/HackathonSlice";
+import {
+  getHackDetails,
+  updatePost,
+} from "../../../Redux/Slices/HackathonSlice";
 
 function EditHack() {
   const { id } = useParams();
@@ -82,7 +85,9 @@ function EditHack() {
     <Layout>
       <div className="max-w-7xl bg-gray-100 rounded-lg shadow-lg mx-auto my-12 p-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-extrabold text-gray-800">Share Your Hackathon Journey</h2>
+          <h2 className="text-3xl font-extrabold text-gray-800">
+            Share Your Hackathon Journey
+          </h2>
         </div>
         <form onSubmit={handleSubmit} className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -146,18 +151,18 @@ function EditHack() {
               <label className="block text-gray-700 font-semibold mb-2">
                 Mentor Name <span className="text-red-600">*</span>
               </label>
-              <select
+              <input
                 name="mentorName"
                 value={formData.mentorName}
                 onChange={handleChange}
                 className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
                 required
               >
-                <option value="">Select Mentor</option>
+                {/* <option value="">Select Mentor</option>
                 <option value="Priya Rakibe">Priya Rakibe</option>
                 <option value="Gondhalekar">Gondhalekar</option>
-                <option value="Smita Patil">Smita Patil</option>
-              </select>
+                <option value="Smita Patil">Smita Patil</option> */}
+              </input>
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">

@@ -238,7 +238,7 @@ function ResearchPost() {
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
-                Winning Photo
+                Winning Image
               </label>
               <input
                 type="file"
@@ -249,7 +249,7 @@ function ResearchPost() {
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
-                Paper Link (Google Drive)
+                Paper DOI No 
               </label>
               <input
                 type="text"

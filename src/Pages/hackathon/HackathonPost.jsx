@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import confetti from "canvas-confetti";
 
 function HackathonPost() {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -34,7 +33,7 @@ function HackathonPost() {
       setFormData({ ...formData, [name]: value });
     }
   };
-  
+
   const [winningPhoto, setWinningPhoto] = useState(null);
 
   async function handleSubmit(e) {
@@ -42,7 +41,7 @@ function HackathonPost() {
 
     // Create a new FormData object
     const form = new FormData();
-    
+
     // Append each field to FormData
     for (const [key, value] of Object.entries(formData)) {
       form.append(key, value);
@@ -74,12 +73,13 @@ function HackathonPost() {
     }
   }
 
-
   return (
     <Layout>
       <div className="max-w-7xl bg-gray-100 rounded-lg shadow-lg mx-auto my-12 p-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-extrabold text-gray-800">Share Your Hackathon Journey</h2>
+          <h2 className="text-3xl font-extrabold text-gray-800">
+            Share Your Hackathon Journey
+          </h2>
         </div>
         <form onSubmit={handleSubmit} className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -143,18 +143,18 @@ function HackathonPost() {
               <label className="block text-gray-700 font-semibold mb-2">
                 Mentor Name <span className="text-red-600">*</span>
               </label>
-              <select
+              <input
                 name="mentorName"
                 value={formData.mentorName}
                 onChange={handleChange}
                 className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
                 required
               >
-                <option value="">Select Mentor</option>
+                {/* <option value="">Select Mentor</option>
                 <option value="Priya Rakibe">Priya Rakibe</option>
                 <option value="Gondhalekar">Gondhalekar</option>
-                <option value="Smita Patil">Smita Patil</option>
-              </select>
+                <option value="Smita Patil">Smita Patil</option> */}
+              </input>
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
@@ -219,7 +219,7 @@ function HackathonPost() {
             </div>
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
-                Winning Photo
+                Winning Image
               </label>
               <input
                 type="file"
