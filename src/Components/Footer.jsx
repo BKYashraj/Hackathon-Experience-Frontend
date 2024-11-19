@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="text-gray-100 body-font ">
+    <footer className="text-gray-100 body-font mt-auto">
       <div className="bg-gradient-to-r from-gray-100">
         <div className="container flex flex-col flex-wrap px-5 py-10 mx-auto sm:flex-row">
           <p className="text-sm text-center text-gray-500 sm:text-left">

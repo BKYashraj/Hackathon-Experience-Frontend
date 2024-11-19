@@ -73,7 +73,7 @@ function Signup() {
     <>
       <Layout>
         <section className="text-gray-600 body-font">
-          <div className="flex flex-wrap items-center h-screen px-10 py-6 mx-auto">
+          <div className="flex flex-wrap items-center h-auto min-h-screen px-10 py-6 mx-auto">
             <div className="hidden pr-0 lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 md:block">
               <img
                 src={signup}
@@ -89,12 +89,18 @@ function Signup() {
               onSubmit={handleFormSubmit}
               noValidate // Disable the default HTML5 validation
             >
-              <h2 className="mb-6 text-2xl font-bold text-gray-800">Sign Up</h2>
+              <h2 className="mb-6 ml-16 text-2xl font-bold text-gray-800">Registration Form</h2>
+
+              
+
+              <OAuth/>
+
+              <p className="m-5 text-base font-semibold ml-44 text-gray-600">OR</p>
 
               <div className="relative mb-5">
                 <label
                   htmlFor="firstName"
-                  className="block text-sm font-semibold text-gray-700"
+                  className="block text-sm  font-semibold text-gray-700"
                 >
                   First Name
                 </label>
@@ -168,13 +174,13 @@ function Signup() {
               <button
                 type="submit"
                 onChange={handleFormSubmit}
-                className="w-full px-4 py-2 mb-6  text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600  border-0 rounded-md shadow-md focus:outline-none focus:ring-2 transition-colors duration-300"
+                className="w-full px-4 py-2 mb-5 mt-2  text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600  border-0 rounded-md shadow-md focus:outline-none focus:ring-2 transition-colors duration-300"
               >
                 Create Account
               </button>
-              <OAuth/>
               
-              <p className="mt-3">Already have an account?{" "}
+              
+              <p className="">Already have an account?{" "}
               <Link
                   to="/auth/login"
                   className="text-indigo-600 hover:underline"

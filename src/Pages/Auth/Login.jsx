@@ -114,10 +114,11 @@ function Login() {
                 onClick={handleFormSubmit}
                 className="w-full px-4 py-2 mb-6  text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600  border-0 rounded-md shadow-md focus:outline-none focus:ring-2 transition-colors duration-300"
               >
-                Create Account
+                Login
               </button>
+              <p className="mb-5 text-base font-semibold ml-44 text-gray-600">OR</p>
               <OAuth />
-              <p className="mt-3">Don't have an account? {" "}
+              <p className="mt-4">Don't have an account? {" "}
                 <Link
                   to="/auth/signup"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
