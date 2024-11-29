@@ -15,6 +15,7 @@ import {
   getAllPosts,
   getSelfHackDetails,
 } from "../Redux/Slices/HackathonSlice";
+import HackPost from "../Components/Hackathon Post/HackPost";
 function Home() {
   const dispatch = useDispatch();
 
@@ -122,7 +123,7 @@ function Home() {
         {/* {hackathonsData.map((product) => <div key={product._id}>{product.hackathonName}</div>)} */}
         <section className="bg-gray-100">
           <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0 bg-gray-100 py-8">
-            <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-6 relative">
+            {/* <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-6 relative">
               Highlighting Top Hackathon Achievements
             </h2>
             <p className="text-center text-lg text-gray-700 mb-8">
@@ -162,14 +163,14 @@ function Home() {
                           </h3>
                           <p className="text-lg font-medium text-gray-800 mb-2">
                             <strong>Title:</strong> {hackathon.title}
-                          </p>
+                          </p> */}
                           {/* <p className="text-lg font-medium text-gray-800 mb-2">
                   <strong>Theme/Domain:</strong> {hackathon.themeOrDomain}
                 </p>
                 <p className="text-lg font-medium text-gray-800 mb-2">
                   <strong>Category:</strong> {hackathon.category}
                 </p> */}
-                          <p className="text-lg font-medium text-gray-800 mb-2">
+                          {/* <p className="text-lg font-medium text-gray-800 mb-2">
                             <strong>Experience:</strong>{" "}
                             {hackathon.overallExperience}
                           </p>
@@ -201,7 +202,10 @@ function Home() {
               <p className="text-center text-gray-500">
                 No hackathon details available.
               </p>
-            )}
+            )} */}
+
+            <HackPost/>
+
             <div className="flex justify-center content-center pt-6">
               <Link to="/hackPage">
               <button className="bg-blue-500 justify-center hover:bg-blue-700 text-white font-bold py-3 px-5 rounded-full">
@@ -209,6 +213,8 @@ function Home() {
               </button>
               </Link>
             </div>
+
+
           </div>
         </section>
 

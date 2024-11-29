@@ -14,6 +14,7 @@ function HackathonPost() {
     title: "",
     themeOrDomain: "",
     category: "",
+    collegeName: "",
     mentorName: "",
     teamMembersNames: "",
     techStack: "",
@@ -139,6 +140,21 @@ function HackathonPost() {
                 <option value="Other">Other</option>
               </select>
             </div>
+
+            <div>
+              <label className="block text-gray-700 font-semibold mb-2">
+                College Name <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="text"
+                name="collegeName"
+                value={formData.collegeName}
+                onChange={handleChange}
+                className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
                 Mentor Name <span className="text-red-600">*</span>
@@ -181,7 +197,7 @@ function HackathonPost() {
                 className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            <div>
+            <div className="col-span-full">
               <label className="block text-gray-700 font-semibold mb-2">
                 Overall Experience <span className="text-red-600">*</span>
               </label>

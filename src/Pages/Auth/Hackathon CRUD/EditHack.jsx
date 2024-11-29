@@ -17,6 +17,7 @@ function EditHack() {
     title: "",
     themeOrDomain: "",
     category: "",
+    collegeName: "",
     mentorName: "",
     teamMembersNames: "",
     techStack: "",
@@ -86,7 +87,7 @@ function EditHack() {
       <div className="max-w-7xl bg-gray-100 rounded-lg shadow-lg mx-auto my-12 p-8">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-extrabold text-gray-800">
-            Share Your Hackathon Journey
+          Update Hackathon Experience
           </h2>
         </div>
         <form onSubmit={handleSubmit} className="space-y-8">
@@ -147,6 +148,21 @@ function EditHack() {
                 <option value="Other">Other</option>
               </select>
             </div>
+
+            <div>
+              <label className="block text-gray-700 font-semibold mb-2">
+                College Name <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="text"
+                name="collegeName"
+                value={formData.collegeName}
+                onChange={handleChange}
+                className="w-full border border-gray-300 p-3 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
                 Mentor Name <span className="text-red-600">*</span>
