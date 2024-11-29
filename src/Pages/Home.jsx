@@ -16,6 +16,7 @@ import {
   // getSelfHackDetails,
 } from "../Redux/Slices/HackathonSlice";
 import HackPost from "../Components/Hackathon Post/HackPost";
+import TeamSection from "../Components/TeamSection";
 function Home() {
   const dispatch = useDispatch();
 
@@ -217,6 +218,8 @@ function Home() {
 
           </div>
         </section>
+
+        <TeamSection />
 
         {/* Services Section */}
         <section className="pb-12 pt-16">
