@@ -16,7 +16,7 @@ const TeamSection = () => {
         {/* Title and Description */}
         <h3 className="text-2xl font-semibold text-gray-800">Yashraj Pravin Desale</h3>
         <p className="text-gray-600 text-lg font-medium mt-4 px-6">
-          Skilled in Full Stack development (MERN Stack) and continuously improving my problem-solving skills in DSA. I also practice Rajyoga Meditation to enhance work efficiency, self-confidence, and concentration.
+          Skilled in Full Stack development (MERN Stack) and continuously improving problem-solving skills in DSA. Believes in 'hard work with positivity' and practice Rajyoga Meditation to enhance my work efficiency, self-confidence, and mind concentration.
         </p>
 
         {/* Social Links */}
