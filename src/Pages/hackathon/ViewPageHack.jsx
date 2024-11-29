@@ -20,7 +20,12 @@ function ViewPageHack() {
   // Calculate the indices for slicing the array
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currsentItem = hackathonsData.slice(indexOfFirstItem, indexOfLastItem);
+  // const currsentItem = hackathonsData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const currsentItem = [...hackathonsData]
+  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by date descending
+  .slice(indexOfFirstItem, indexOfLastItem); // Then paginate
+
 
   const totalPages = Math.ceil(hackathonsData.length / itemsPerPage);
 

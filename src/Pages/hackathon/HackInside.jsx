@@ -57,6 +57,9 @@ function HackInside() {
                   <strong>Tech Stack:</strong> {hackathonsData?.techStack}
                 </p>
                 <p className="text-xl font-medium text-gray-800 mb-6">
+                  <strong>College Name:</strong> {hackathonsData?.collegeName}
+                </p>
+                <p className="text-xl font-medium text-gray-800 mb-6">
                   <strong>Team Members:</strong> {hackathonsData?.teamMembersNames}
                 </p>
                 <p className="text-xl font-medium text-gray-800 mb-6">

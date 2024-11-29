@@ -127,7 +127,7 @@ function SelfHackData() {
                     />
                   </div>
                   <div className="flex flex-col w-full md:w-2/3 md:pl-6 sm:pt-4">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 hover:underline hover:decoration-2">
+                    <h3 className="text-xl -2 font-bold text-gray-900 mb-4 hover:underline hover:decoration-2">
                       {hackathon.hackathonName} Experience
                     </h3>
                     <p className="text-lg font-medium text-gray-800 mb-2">
@@ -137,12 +137,15 @@ function SelfHackData() {
                       <strong>Experience:</strong> {hackathon.overallExperience}
                     </p>
                     <p className="text-lg font-medium text-gray-800 mb-2">
+                      <strong>College Name:</strong> {hackathon.collegeName}
+                    </p>
+                    <p className="text-lg font-medium text-gray-800 mb-2">
                       <strong>Mentor Name:</strong> {hackathon.mentorName}
                     </p>
                     <p className="text-lg font-medium text-gray-800 mb-4">
                       <strong>Team Members:</strong> {hackathon.teamMembersNames}
                     </p>
-                    {hackathon.projectDemoLink && (
+                    {/* {hackathon.projectDemoLink && (
                       <p>
                         <a
                           href={hackathon.projectDemoLink}
@@ -153,7 +156,7 @@ function SelfHackData() {
                           View Project Demo
                         </a>
                       </p>
-                    )}
+                    )} */}
                   </div>
                 </Link>
                 <div className="mt-4 flex flex-col space-x-4 space-y-4 items-center ">
