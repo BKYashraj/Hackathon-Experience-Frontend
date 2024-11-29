@@ -91,7 +91,7 @@ function ViewPageHack() {
                       >
                         <div className="flex flex-none items-center w-full md:w-1/3">
                           <img
-                            className="w-dvw h-64 object-cover rounded-t-lg md:rounded-none md:rounded-l-lg"
+                            className="w-dvw h-64 object-contain rounded-t-lg md:rounded-none md:rounded-l-lg"
                             src={
                               hackathon.winningPhoto || "default-image-url.jpg"
                             }
