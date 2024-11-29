@@ -9,20 +9,20 @@ import Services from "../assets/serviceHome.png";
 import Learning from "../assets/collaborative.png";
 import Networking from "../assets/networking.png";
 import paper from "../assets/paper2.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
   getAllPosts,
-  getSelfHackDetails,
+  // getSelfHackDetails,
 } from "../Redux/Slices/HackathonSlice";
 import HackPost from "../Components/Hackathon Post/HackPost";
 function Home() {
   const dispatch = useDispatch();
 
   // const { hackathonsData } = useSelector((state)=>state.hackathons)
-  const hackathonsData = useSelector(
-    (state) => state.hackathons.hackathonsData
-  );
+  // const hackathonsData = useSelector(
+  //   (state) => state.hackathons.hackathonsData
+  // );
 
   useEffect(() => {
     const fetchPosts = async () => {
