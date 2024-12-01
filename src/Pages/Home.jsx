@@ -56,7 +56,7 @@ function Home() {
             <div className="w-5/6 ml-4 text-center md:w-2/6 md:text-left">
               <div className="flex justify-center text-4xl md:justify-normal">
                 <h1 className="pb-5 pt-4 font-bold bg-gradient-to-r from-black-500 to-black-400 bg-clip-text">
-                  A Powerful Resource to Master Hackathons{" "}
+                A Powerful Resource to Master Hackathon and Research Experience{" "}
                 </h1>
               </div>
 

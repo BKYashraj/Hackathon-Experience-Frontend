@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import AuthSliceReducer from './Slices/AuthSlice'
 import HackathonSliceReducer from './Slices/HackathonSlice'
-// import ProductSliceReducer from './Slices/HackSlice'
+import SearchSliceReducer from './Slices/SearchSlice'
 import ResearchSliceReducer from './Slices/ReseacrchSlice'
 
 export const store = configureStore({
@@ -9,7 +9,7 @@ export const store = configureStore({
     auth: AuthSliceReducer,
     hackathons: HackathonSliceReducer,
     Research: ResearchSliceReducer,
-    // product: ProductSliceReducer
+    search: SearchSliceReducer,
   },
   devTools: true
 
